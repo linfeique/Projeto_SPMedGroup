@@ -34,6 +34,10 @@ insert into MEDICOS(NOME, ID_ESPECIALIDADE, ID_CLINICA, ID_USUARIO, CRM)
 values ('Ricardo Lemos', 2, 1, 1, '54356-SP')
 	  ,('Roberto Possarle', 17, 1, 2, '53452-SP')
 	  ,('Helena Strada', 16, 1, 3, '65463-SP')
+	  ,('Matheus Custodio', 17, 1, 2, '12678-SP')
+
+insert into MEDICOS(NOME, ID_ESPECIALIDADE, ID_CLINICA, ID_USUARIO, CRM)
+values ('Matheus Custodio', 17, 1, 2, '12678-SP')
 
 select * from MEDICOS;
 
@@ -47,6 +51,8 @@ values ('Mariana', '05/03/2018', '11 96584-5231', '54566266-8', '13771913039', 2
 	  ,('Lidia', '21/11/2011', '11 3456-7654', '43522543-5', '94839859000', 2, 'Rua Estado de Israel 240, São Paulo, Estado de São Paulo, 04022-000')
 
 select * from PACIENTES;
+
+update PACIENTES set DATA_NASCIMENTO = '13/10/1983' where ID = 7
 
 insert into CONSULTAS(ID_PACIENTE, ID_MEDICO, DATA_CONSULTA, ID_SITUACAO, DESCRICAO)
 values (1, 2, '20/01/2019  15:00:00', 1, 'blabla')
