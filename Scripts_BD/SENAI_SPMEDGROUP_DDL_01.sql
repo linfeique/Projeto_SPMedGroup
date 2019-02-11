@@ -52,6 +52,8 @@ create table PACIENTES (
 	,ENDERECO varchar(255) not null
 );
 
+alter table PACIENTES alter column DATA_NASCIMENTO date
+
 create table CONSULTAS (
 	ID int identity primary key
 	,ID_PACIENTE int foreign key references PACIENTES(ID)
@@ -61,4 +63,4 @@ create table CONSULTAS (
 	,DESCRICAO text
 );
 
-alter table CONSULTAS alter column DESCRICAO text
+alter table CONSULTAS alter column DATA_CONSULTA datetime
