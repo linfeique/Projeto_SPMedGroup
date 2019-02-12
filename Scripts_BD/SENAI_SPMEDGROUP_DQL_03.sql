@@ -45,3 +45,31 @@ begin
 end;
 
 exec Idade_Pacientes;
+
+-- Insere novos usuario
+create procedure Insere_Usuarios
+	@EMAIL varchar(250)
+   ,@SENHA varchar(250)
+   ,@ID_TIPO_USUARIO varchar(100)
+as
+begin
+	insert into USUARIOS(EMAIL, SENHA, ID_TIPO_USUARIO)
+	values (@EMAIL, @SENHA, @ID_TIPO_USUARIO)
+end
+
+-- Usuario teste
+exec Insere_Usuarios 'matheus.custodio@spmedicalgroup.com', '123890', '2'
+
+-- Mostra quanto usuarios tem depois de cada insert
+-- Já foi executado
+create trigger Soma_Usuarios
+on USUARIOS
+after insert
+as
+begin
+	select count(*) as QTD_USUARIOS from USUARIOS
+end
+
+-- Cria um indice clusterizado pelo rg
+create clustered index index_paciente_rg
+on PACIENTES(RG)
