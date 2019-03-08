@@ -73,3 +73,5 @@ end
 -- Cria um indice clusterizado pelo rg
 create clustered index index_paciente_rg
 on PACIENTES(RG)
+
+select * from TIPO_USUARIO

@@ -9,3 +9,6 @@ C:\Users\44846245837\Desktop\SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\obj\Debug\
 C:\Users\44846245837\Desktop\SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\obj\Debug\netcoreapp2.1\SPMedGroup.AssemblyInfoInputs.cache
 C:\Users\44846245837\Desktop\SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\obj\Debug\netcoreapp2.1\SPMedGroup.AssemblyInfo.cs
 C:\Users\44846245837\Desktop\SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\obj\Debug\netcoreapp2.1\SPMedGroup.RazorTargetAssemblyInfo.cache
+C:\Users\44846245837\Desktop\SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\bin\Debug\netcoreapp2.1\SPMedGroup.pdb
+C:\Users\44846245837\Desktop\SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\obj\Debug\netcoreapp2.1\SPMedGroup.dll
+C:\Users\44846245837\Desktop\SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\obj\Debug\netcoreapp2.1\SPMedGroup.pdb
