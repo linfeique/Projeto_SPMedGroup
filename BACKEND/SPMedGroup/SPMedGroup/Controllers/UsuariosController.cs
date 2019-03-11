@@ -36,13 +36,28 @@ namespace SPMedGroup.Controllers
             }
         }
 
-        [HttpPost]
         [Authorize(Roles = "Administrador")]
+        [HttpPost]
         public IActionResult Cadastrar(Usuarios usuario)
         {
             try
             {
                 usuarioRepositorio.Cadastrar(usuario);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Você não está logado");
+            }
+        }
+
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete]
+        public IActionResult Excluir(Usuarios usuario)
+        {
+            try
+            {
+                usuarioRepositorio.Deletar(usuario);
                 return Ok();
             }
             catch (Exception ex)
