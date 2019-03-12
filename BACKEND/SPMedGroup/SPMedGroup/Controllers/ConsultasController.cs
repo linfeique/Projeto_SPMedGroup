@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SPMedGroup.Domains;
 using SPMedGroup.Interfaces;
 using SPMedGroup.Repositories;
 
@@ -30,20 +31,39 @@ namespace SPMedGroup.Controllers
             try
             {
                 // primeiro - pegar o id do usuário logado
-                int MedicoId = Convert.ToInt32(HttpContext.User.Claims.First(x => x.Type == JwtRegisteredClaimNames.Jti).Value);
+                int id = Convert.ToInt32(HttpContext.User.Claims.First(x => x.Type == JwtRegisteredClaimNames.Jti).Value);
 
-                string role = HttpContext.User.Claims.First(x => x.Type == ClaimTypes.Role).ToString();
+                string role = HttpContext.User.Claims.First(x => x.Type == ClaimTypes.Role).Value;
 
                 // dúvida: ele é médico ou paciente?
                 // se médico,você terá um repository que liste as consultas daquele médico
                 if (role == "Médico")
                 {
-                    return Ok(consultaRepositorio.ListarConsultasMedico());
+                    return Ok(consultaRepositorio.ListarConsultasMedico(id));
+                }
+                else if (role == "Paciente")
+                {
+                    return Ok(consultaRepositorio.ListarConsultasPaciente(id));
                 }
                 else
                 {
-                    return Ok(consultaRepositorio.ListarConsultasPaciente());
+                    return Ok(consultaRepositorio.Listar());
                 }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        [Authorize("Administrador")]
+        [HttpPost]
+        public IActionResult Cadastrar(Consultas consulta)
+        {
+            try
+            {
+                consultaRepositorio.Cadastrar(consulta);
+                return Ok();
             }
             catch (Exception ex)
             {

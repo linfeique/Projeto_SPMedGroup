@@ -28,12 +28,18 @@ namespace SPMedGroup.Repositories
 
         public List<Consultas> ListarConsultasMedico(int id)
         {
-            throw new NotImplementedException();
+            using (SpMedGroupContext ctx = new SpMedGroupContext())
+            {
+                return ctx.Consultas.Where(x => x.IdMedico == id).ToList();
+            }
         }
 
         public List<Consultas> ListarConsultasPaciente(int id)
         {
-            throw new NotImplementedException();
+            using (SpMedGroupContext ctx = new SpMedGroupContext())
+            {
+                return ctx.Consultas.Where(x => x.IdPaciente == id).ToList();
+            }
         }
     }
 }

@@ -20,10 +20,12 @@ namespace SPMedGroup.Controllers
     public class LoginController : ControllerBase
     {
         private IUsuarioRepository usuarioRepositorio { get; set; }
+        private IMedicoRepository medicoRepositorio { get; set; }
 
         public LoginController()
         {
             usuarioRepositorio = new UsuarioRepository();
+            medicoRepositorio = new MedicoRepository();
         }
 
         [HttpPost]
@@ -32,6 +34,7 @@ namespace SPMedGroup.Controllers
             try
             {
                 Usuarios usuario = usuarioRepositorio.BuscarPorEmailSenha(login.Email, login.Senha);
+                Medicos medico = medicoRepositorio.BuscarMedicoPorIdUsuario(usuario.Id);
 
                 if (usuario == null)
                 {
@@ -41,14 +44,9 @@ namespace SPMedGroup.Controllers
                 var claims = new[]
                 {
                     new Claim(JwtRegisteredClaimNames.Email, usuario.Email),
-                    new Claim(JwtRegisteredClaimNames.Jti, usuario.Id.ToString()),
-<<<<<<< HEAD
-                    new Claim(ClaimTypes.Role, usuario.IdTipoUsuarioNavigation.Tipo)
-                    // Aqui vc pode determinar qualquer coisa
-                    // new Claim("teste", "lasanha")
-=======
+                    //new Claim(JwtRegisteredClaimNames.Jti, usuario.Id.ToString()),
                     new Claim(ClaimTypes.Role, usuario.IdTipoUsuarioNavigation.Tipo),
->>>>>>> 56e184d47d70d8be78f35c83c2ba4004bb115639
+                    new Claim(JwtRegisteredClaimNames.Jti, medico.Id.ToString())
                 };
 
                 var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("spmedgroup-chave-autenticacao"));
