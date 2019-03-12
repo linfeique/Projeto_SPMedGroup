@@ -29,7 +29,7 @@ namespace SPMedGroup.Domains
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=.\\SqlExpress; Initial Catalog= SENAI_SPMEDGROUP_TARDE; User Id=sa; Password=132");
+                optionsBuilder.UseSqlServer("Data Source=LAPTOP-VFC445KT\\SQLEXPRESS01; Initial Catalog= SENAI_SPMEDGROUP_TARDE; Integrated Security=True");
             }
         }
 

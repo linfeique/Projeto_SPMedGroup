@@ -12,3 +12,17 @@ C:\Users\44846245837\Desktop\SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\obj\Debug\
 C:\Users\44846245837\Desktop\SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\bin\Debug\netcoreapp2.1\SPMedGroup.pdb
 C:\Users\44846245837\Desktop\SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\obj\Debug\netcoreapp2.1\SPMedGroup.dll
 C:\Users\44846245837\Desktop\SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\obj\Debug\netcoreapp2.1\SPMedGroup.pdb
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\bin\Debug\netcoreapp2.1\SPMedGroup.deps.json
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\bin\Debug\netcoreapp2.1\SPMedGroup.runtimeconfig.json
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\bin\Debug\netcoreapp2.1\SPMedGroup.runtimeconfig.dev.json
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\bin\Debug\netcoreapp2.1\SPMedGroup.dll
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\bin\Debug\netcoreapp2.1\SPMedGroup.pdb
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\obj\Debug\netcoreapp2.1\SPMedGroup.csprojAssemblyReference.cache
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\obj\Debug\netcoreapp2.1\SPMedGroup.csproj.CoreCompileInputs.cache
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\obj\Debug\netcoreapp2.1\SPMedGroup.RazorAssemblyInfo.cache
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\obj\Debug\netcoreapp2.1\SPMedGroup.RazorAssemblyInfo.cs
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\obj\Debug\netcoreapp2.1\SPMedGroup.AssemblyInfoInputs.cache
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\obj\Debug\netcoreapp2.1\SPMedGroup.AssemblyInfo.cs
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\obj\Debug\netcoreapp2.1\SPMedGroup.RazorTargetAssemblyInfo.cache
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\obj\Debug\netcoreapp2.1\SPMedGroup.dll
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SPMedGroup\SPMedGroup\obj\Debug\netcoreapp2.1\SPMedGroup.pdb

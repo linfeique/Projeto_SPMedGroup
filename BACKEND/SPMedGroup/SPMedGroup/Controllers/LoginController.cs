@@ -42,7 +42,7 @@ namespace SPMedGroup.Controllers
                 {
                     new Claim(JwtRegisteredClaimNames.Email, usuario.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, usuario.Id.ToString()),
-                    new Claim(ClaimTypes.Role, usuario.IdTipoUsuarioNavigation.Tipo),
+                    new Claim(ClaimTypes.Role, usuario.IdTipoUsuarioNavigation.Tipo)
                     // Aqui vc pode determinar qualquer coisa
                     // new Claim("teste", "lasanha")
                 };
