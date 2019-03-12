@@ -23,7 +23,7 @@ namespace SPMedGroup.Repositories
         {
             using (SpMedGroupContext ctx = new SpMedGroupContext())
             {
-                Usuarios usuarioProcurado = ctx.Usuarios.FirstOrDefault(x => x.Email == email && x.Senha == senha);
+                Usuarios usuarioProcurado = ctx.Usuarios.Include(x => x.IdTipoUsuarioNavigation).FirstOrDefault(x => x.Email == email && x.Senha == senha);
 
                 if (usuarioProcurado == null)
                 {
@@ -43,9 +43,13 @@ namespace SPMedGroup.Repositories
             }
         }
 
-        public void Deletar(Usuarios usuario, int id)
+        public void Deletar(Usuarios usuario)
         {
-            throw new NotImplementedException();
+            using (SpMedGroupContext ctx = new SpMedGroupContext())
+            {
+                ctx.Usuarios.Remove(usuario);
+                ctx.SaveChanges();
+            }
         }
 
         public List<Usuarios> ListarUsuarios()

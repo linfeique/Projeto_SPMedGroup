@@ -42,9 +42,13 @@ namespace SPMedGroup.Controllers
                 {
                     new Claim(JwtRegisteredClaimNames.Email, usuario.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, usuario.Id.ToString()),
+<<<<<<< HEAD
                     new Claim(ClaimTypes.Role, usuario.IdTipoUsuarioNavigation.Tipo)
                     // Aqui vc pode determinar qualquer coisa
                     // new Claim("teste", "lasanha")
+=======
+                    new Claim(ClaimTypes.Role, usuario.IdTipoUsuarioNavigation.Tipo),
+>>>>>>> 56e184d47d70d8be78f35c83c2ba4004bb115639
                 };
 
                 var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("spmedgroup-chave-autenticacao"));

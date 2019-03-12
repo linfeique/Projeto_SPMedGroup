@@ -14,7 +14,7 @@ namespace SPMedGroup.Interfaces
 
         void Alterar(Usuarios usuario);
 
-        void Deletar(Usuarios usuario, int id);
+        void Deletar(Usuarios usuario);
 
         Usuarios BuscarPorEmailSenha(string email, string senha);
     }
