@@ -70,5 +70,20 @@ namespace SPMedGroup.Controllers
                 return BadRequest();
             }
         }
+
+        [Authorize(Roles = "Médico")]
+        [HttpPut]
+        public IActionResult Alterar(Consultas consulta)
+        {
+            try
+            {
+                consultaRepositorio.Alterar(consulta);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

@@ -26,3 +26,17 @@ C:\Users\44846245837\Desktop\SPMedGroup\BACKEND\SpMedGroup\obj\Debug\netcoreapp2
 C:\Users\44846245837\Desktop\SPMedGroup\BACKEND\SpMedGroup\obj\Debug\netcoreapp2.1\SpMedGroup.RazorTargetAssemblyInfo.cache
 C:\Users\44846245837\Desktop\SPMedGroup\BACKEND\SpMedGroup\obj\Debug\netcoreapp2.1\SpMedGroup.dll
 C:\Users\44846245837\Desktop\SPMedGroup\BACKEND\SpMedGroup\obj\Debug\netcoreapp2.1\SpMedGroup.pdb
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\bin\Debug\netcoreapp2.1\SpMedGroup.deps.json
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\bin\Debug\netcoreapp2.1\SpMedGroup.runtimeconfig.json
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\bin\Debug\netcoreapp2.1\SpMedGroup.runtimeconfig.dev.json
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\bin\Debug\netcoreapp2.1\SpMedGroup.dll
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\bin\Debug\netcoreapp2.1\SpMedGroup.pdb
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\obj\Debug\netcoreapp2.1\SpMedGroup.csprojAssemblyReference.cache
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\obj\Debug\netcoreapp2.1\SpMedGroup.csproj.CoreCompileInputs.cache
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\obj\Debug\netcoreapp2.1\SpMedGroup.RazorAssemblyInfo.cache
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\obj\Debug\netcoreapp2.1\SpMedGroup.RazorAssemblyInfo.cs
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\obj\Debug\netcoreapp2.1\SpMedGroup.AssemblyInfoInputs.cache
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\obj\Debug\netcoreapp2.1\SpMedGroup.AssemblyInfo.cs
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\obj\Debug\netcoreapp2.1\SpMedGroup.RazorTargetAssemblyInfo.cache
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\obj\Debug\netcoreapp2.1\SpMedGroup.dll
+C:\Users\Matheus\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\obj\Debug\netcoreapp2.1\SpMedGroup.pdb

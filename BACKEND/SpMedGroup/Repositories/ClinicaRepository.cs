@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SPMedGroup.Domains;
+using SpMedGroup.Domains;
 using SPMedGroup.Interfaces;
 using System;
 using System.Collections.Generic;
