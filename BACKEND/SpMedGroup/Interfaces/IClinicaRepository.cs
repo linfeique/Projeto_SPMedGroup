@@ -9,5 +9,7 @@ namespace SPMedGroup.Interfaces
     interface IClinicaRepository
     {
         List<Clinica> ListarClinicas();
+
+        void Cadastrar(Clinica clinica);
     }
 }

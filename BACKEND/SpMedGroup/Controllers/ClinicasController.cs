@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SpMedGroup.Domains;
 using SPMedGroup.Interfaces;
 using SPMedGroup.Repositories;
 
@@ -27,6 +29,21 @@ namespace SPMedGroup.Controllers
             try
             {
                 return Ok(ClinicaRepositorio.ListarClinicas());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        [Authorize(Roles = "Administrador")]
+        [HttpPost]
+        public IActionResult Cadastrar(Clinica clinica)
+        {
+            try
+            {
+                ClinicaRepositorio.Cadastrar(clinica);
+                return Ok();
             }
             catch (Exception ex)
             {

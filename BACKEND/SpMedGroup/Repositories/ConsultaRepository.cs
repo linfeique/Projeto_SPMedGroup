@@ -19,6 +19,21 @@ namespace SPMedGroup.Repositories
             }
         }
 
+        public Consultas BuscarPorId(int id)
+        {
+            using (SpMedGroupContext ctx = new SpMedGroupContext())
+            {
+                Consultas consultaProcurada = ctx.Consultas.Find(id);
+
+                if (consultaProcurada == null)
+                {
+                    return null;
+                }
+
+                return consultaProcurada;
+            }
+        }
+
         public void Cadastrar(Consultas consulta)
         {
             using (SpMedGroupContext ctx = new SpMedGroupContext())

@@ -72,12 +72,42 @@ namespace SPMedGroup.Controllers
         }
 
         [Authorize(Roles = "Médico")]
-        [HttpPut]
+        [HttpPut("AlterarDescricao")]
+        public IActionResult AlterarAdmin(Consultas consulta)
+        {
+            try
+            {
+                Consultas consultaASerAlterada = consultaRepositorio.BuscarPorId(consulta.Id);
+
+                if (consultaASerAlterada.Descricao == null)
+                {
+                    return BadRequest("Insira a descrição");
+                }
+
+                consultaASerAlterada.Descricao = consulta.Descricao;
+
+                consultaRepositorio.Alterar(consultaASerAlterada);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        [Authorize(Roles = "Administrador")]
+        [HttpPut("AlterarSituacao")]
         public IActionResult Alterar(Consultas consulta)
         {
             try
             {
-                consultaRepositorio.Alterar(consulta);
+                Consultas consultaASerAlterada = consultaRepositorio.BuscarPorId(consulta.Id);
+
+                consultaASerAlterada.IdSituacao = consulta.IdSituacao;
+
+                consultaRepositorio.Alterar(consultaASerAlterada);
+
                 return Ok();
             }
             catch (Exception ex)
