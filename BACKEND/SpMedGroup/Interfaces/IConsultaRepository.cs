@@ -16,6 +16,8 @@ namespace SPMedGroup.Interfaces
 
         List<Consultas> ListarConsultasPaciente(int id);
 
+        void Alterar(Consultas consulta);
+
         // listar consultas do médico - coluna do idMedico
 
         // listar consultas do paciente - coluna do idPaciente

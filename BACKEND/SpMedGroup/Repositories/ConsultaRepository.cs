@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SPMedGroup.Domains;
+using SpMedGroup.Domains;
 using SPMedGroup.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,6 +10,15 @@ namespace SPMedGroup.Repositories
 {
     public class ConsultaRepository : IConsultaRepository
     {
+        public void Alterar(Consultas consulta)
+        {
+            using (SpMedGroupContext ctx = new SpMedGroupContext())
+            {
+                ctx.Consultas.Update(consulta);
+                ctx.SaveChanges();
+            }
+        }
+
         public void Cadastrar(Consultas consulta)
         {
             using (SpMedGroupContext ctx = new SpMedGroupContext())
@@ -39,7 +48,8 @@ namespace SPMedGroup.Repositories
         {
             using (SpMedGroupContext ctx = new SpMedGroupContext())
             {
-                return ctx.Consultas.Where(x => x. == id).ToList();
+                //return ctx.Consultas.Where(x => x.IdPacienteNavigation.IdUsuario == id).ToList();
+                return ctx.Consultas.Where(x => x.IdPacienteNavigation.Id == id).ToList();
             }
         }
     }
