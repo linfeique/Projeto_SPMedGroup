@@ -16,9 +16,13 @@ values ('Médico'), ('Paciente'), ('Administrador')
 select * from TIPO_USUARIO;
 
 insert into USUARIOS(EMAIL, SENHA, ID_TIPO_USUARIO)
-values ('ricardo.lemos@spmedicalgroup.com.br', '123456', '2'),
-	   ('roberto.possarle@spmedicalgroup.com.br', '654321', '1'),
-	   ('helena.souza@spmedicalgroup.com.br', '987650', '3')
+values ('ricardo.lemos@spmedicalgroup.com.br', '123456', 2),
+	   ('roberto.possarle@spmedicalgroup.com.br', '654321', 1),
+	   ('helena.souza@spmedicalgroup.com.br', '987650', 3)
+	   ,('ligia@gmail.com', '123456', 3), ('alexandre@gmail.com', '123456', 3)
+	  ,('fernando@gmail.com', '123456', 3), ('henrique@gmail.com', '123456', 3)
+	  ,('joao@hotmail.com', '123456', 3), ('bruno@gmail.com', '123456', 3)
+	  ,('mariana@outlook.com', '123456', 3)
 
 select * from USUARIOS;
 
@@ -35,9 +39,6 @@ values ('Ricardo Lemos', 2, 1, 1, '54356-SP')
 	  ,('Roberto Possarle', 17, 1, 2, '53452-SP')
 	  ,('Helena Strada', 16, 1, 3, '65463-SP')
 	  ,('Matheus Custodio', 17, 1, 2, '12678-SP')
-
-insert into MEDICOS(NOME, ID_ESPECIALIDADE, ID_CLINICA, ID_USUARIO, CRM)
-values ('Matheus Custodio', 17, 1, 2, '12678-SP')
 
 select * from MEDICOS;
 
