@@ -11,5 +11,10 @@ namespace SPMedGroup.Interfaces
         Medicos BuscarMedicoPorIdUsuario(int id);
 
         List<Medicos> Listar();
+
+        List<Medicos> ListarMedicosPorEspecialidade();
+        Medicos BuscarMedicosPorEspecialidade(string especialidade);
+
+        void Cadastrar(Medicos medico);
     }
 }

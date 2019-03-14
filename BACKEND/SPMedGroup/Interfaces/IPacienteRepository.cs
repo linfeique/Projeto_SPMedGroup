@@ -11,5 +11,7 @@ namespace SpMedGroup.Interfaces
         void Cadastrar(Pacientes paciente);
 
         List<Pacientes> Listar();
+
+        Pacientes BuscarPorRG(string rg);
     }
 }

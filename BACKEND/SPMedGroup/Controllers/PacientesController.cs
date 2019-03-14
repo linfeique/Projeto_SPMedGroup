@@ -6,29 +6,30 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SpMedGroup.Domains;
-using SPMedGroup.Interfaces;
-using SPMedGroup.Repositories;
+using SpMedGroup.Interfaces;
+using SpMedGroup.Repositories;
 
-namespace SPMedGroup.Controllers
+namespace SpMedGroup.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MedicosController : ControllerBase
+    public class PacientesController : ControllerBase
     {
-        private IMedicoRepository medicoRepositorio { get; set; }
 
-        public MedicosController()
+        private IPacienteRepository pacienteRepositorio { get; set; }
+
+        public PacientesController()
         {
-            medicoRepositorio = new MedicoRepository();
+            pacienteRepositorio = new PacienteRepository();
         }
 
-        [Authorize(Roles = "Administrador")]
+        [Authorize]
         [HttpGet]
         public IActionResult Listar()
         {
             try
             {
-                return Ok(medicoRepositorio.Listar());
+                return Ok(pacienteRepositorio.Listar());
             }
             catch (Exception ex)
             {
@@ -38,12 +39,11 @@ namespace SPMedGroup.Controllers
 
         [Authorize(Roles = "Administrador")]
         [HttpPost]
-        public IActionResult Cadastrar(Medicos medico)
+        public IActionResult Cadastrar(Pacientes paciente)
         {
             try
             {
-                medicoRepositorio.Cadastrar(medico);
-
+                pacienteRepositorio.Cadastrar(paciente);
                 return Ok();
             }
             catch (Exception ex)
@@ -53,12 +53,19 @@ namespace SPMedGroup.Controllers
         }
 
         [Authorize(Roles = "Administrador")]
-        [HttpGet("ListarMedicoPorEspecialidade")]
-        public IActionResult ListarMedicoPorEspecialidade(Medicos medico)
+        [HttpGet("BuscarPorRG")]
+        public IActionResult BuscarPorRG(Pacientes paciente)
         {
             try
             {
-                return Ok(medicoRepositorio.ListarMedicosPorEspecialidade());
+                Pacientes pacienteProcurado = pacienteRepositorio.BuscarPorRG(paciente.Rg);
+
+                if (pacienteProcurado == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(pacienteProcurado);
             }
             catch (Exception ex)
             {
