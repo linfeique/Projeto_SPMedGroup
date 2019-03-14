@@ -19,9 +19,5 @@ namespace SPMedGroup.Interfaces
         void Alterar(Consultas consulta);
 
         Consultas BuscarPorId(int id);
-
-        // listar consultas do médico - coluna do idMedico
-
-        // listar consultas do paciente - coluna do idPaciente
     }
 }

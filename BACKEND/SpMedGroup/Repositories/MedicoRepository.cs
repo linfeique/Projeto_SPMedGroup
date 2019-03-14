@@ -24,18 +24,18 @@ namespace SPMedGroup.Repositories
             }
         }
 
-        public Medicos BuscarMedicosPorEspecialidade(string especialidade)
+        public List<Medicos> ListarMedicosPorEspecialidade(string especialidade)
         {
             using (SpMedGroupContext ctx = new SpMedGroupContext())
             {
-                Medicos medico = ctx.Medicos.FirstOrDefault(x => x.IdEspecialidadeNavigation.Nome == especialidade);
+                List<Medicos> ListaMedicos = ctx.Medicos.Where(x => x.IdEspecialidadeNavigation.Nome == especialidade).ToList();
 
-                if (medico == null)
+                if (ListaMedicos == null)
                 {
                     return null;
                 }
 
-                return medico;
+                return ListaMedicos;
             }
         }
 
@@ -56,22 +56,22 @@ namespace SPMedGroup.Repositories
             }
         }
 
-        public List<Medicos> ListarMedicosPorEspecialidade()
-        {
-            using (SpMedGroupContext ctx = new SpMedGroupContext())
-            {
-                List<Medicos> ListaMedicos = Listar();
-                Medicos medicos = new Medicos();
+        //public List<Medicos> ListarMedicosPorEspecialidade()
+        //{
+        //    using (SpMedGroupContext ctx = new SpMedGroupContext())
+        //    {
+        //        List<Medicos> ListaMedicos = Listar();
+        //        Medicos medicos = new Medicos();
 
-                foreach (Medicos item in ListaMedicos)
-                {
-                    medicos = BuscarMedicosPorEspecialidade(item.IdEspecialidadeNavigation.Nome);
+        //        foreach (Medicos item in ListaMedicos)
+        //        {
+        //            medicos = BuscarMedicosPorEspecialidade(item.IdEspecialidadeNavigation.Nome);
 
-                    ListaMedicos.Add(medicos);
-                }
+        //            ListaMedicos.Add(medicos);
+        //        }
 
-                return ListaMedicos;
-            }
-        }
+        //        return ListaMedicos;
+        //    }
+        //}
     }
 }

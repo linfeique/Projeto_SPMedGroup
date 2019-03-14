@@ -53,12 +53,12 @@ namespace SPMedGroup.Controllers
         }
 
         [Authorize(Roles = "Administrador")]
-        [HttpGet("ListarMedicoPorEspecialidade")]
-        public IActionResult ListarMedicoPorEspecialidade(Medicos medico)
+        [HttpGet("ListarMedicoPorEspecialidade/{especialidade}")]
+        public IActionResult ListarMedicoPorEspecialidade(string especialidade)
         {
             try
             {
-                return Ok(medicoRepositorio.ListarMedicosPorEspecialidade());
+                return Ok(medicoRepositorio.ListarMedicosPorEspecialidade(especialidade));
             }
             catch (Exception ex)
             {

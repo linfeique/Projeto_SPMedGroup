@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SpMedGroup.Domains;
+using SpMedGroup.Util;
 using SPMedGroup.Interfaces;
 using SPMedGroup.Repositories;
 
@@ -62,6 +63,13 @@ namespace SPMedGroup.Controllers
         {
             try
             {
+
+                EnviarEmail evn = new EnviarEmail();
+
+                consultaRepositorio.BuscarUsuarioPorIdConsulta(consulta.IdPacienteNavigation.IdUsuarioNavigation.Id);
+
+                evn.Execute(consulta.IdPacienteNavigation.IdUsuarioNavigation.Email);
+                
                 consultaRepositorio.Cadastrar(consulta);
                 return Ok();
             }
