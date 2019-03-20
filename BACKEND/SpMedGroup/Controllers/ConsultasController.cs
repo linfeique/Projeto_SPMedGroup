@@ -64,11 +64,12 @@ namespace SPMedGroup.Controllers
             try
             {
 
-                EnviarEmail evn = new EnviarEmail();
+                //EnviarEmail evn = new EnviarEmail();
 
-                consultaRepositorio.BuscarUsuarioPorIdConsulta(consulta.IdPacienteNavigation.IdUsuarioNavigation.Id);
+                //TODO ajustar buscar por usuario
+                // consultaRepositorio.BuscarUsuarioPorIdConsulta(consulta.IdPacienteNavigation.IdUsuarioNavigation.Id);
 
-                evn.Execute(consulta.IdPacienteNavigation.IdUsuarioNavigation.Email);
+                // evn.Execute(consulta.IdPacienteNavigation.IdUsuarioNavigation.Email);
                 
                 consultaRepositorio.Cadastrar(consulta);
                 return Ok();
