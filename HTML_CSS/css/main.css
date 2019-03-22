@@ -1,0 +1,84 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+    font-family: myriad-pro, sans-serif;
+    font-style: normal;
+    font-weight: 300;
+}
+
+body{
+    background-image: url("../images/daylight-evergreen-green-23680.jpg");
+    background-size: cover;
+}
+
+.loginbox{
+    width: 597px;
+    height: 539px;
+    background-color: rgba(0, 0, 0, 0.72);
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+img{
+    margin-top: 40px;
+    margin-bottom: 72px;
+}
+
+.form_ext{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form_ext p{
+    margin-bottom: 8px;
+    font-size: 11pt;
+}
+
+.box-text input[type="text"]{
+    width: 413px;
+    height: 39px;
+    padding-left: 7px;
+    margin-right: 10px;
+    outline: none;
+    border: 1px solid black;
+    color: black;
+}
+
+.box-text input[type="password"]{
+    width: 413px;
+    height: 39px;
+    padding-left: 7px;
+    margin-right: 10px;
+    outline: none;
+    border: 1px solid black;
+    color: black;
+}
+
+/* 
+    Mudando cor do placeholder
+*/
+
+::-webkit-input-placeholder {
+    color: #BCB8B8;
+ }
+ 
+ :-moz-placeholder { /* Firefox 18- */
+    color: #BCB8B8;  
+ }
+ 
+ ::-moz-placeholder {  /* Firefox 19+ */
+    color: #BCB8B8;  
+ }
+ 
+ :-ms-input-placeholder {  
+    color: #BCB8B8;  
+ }
