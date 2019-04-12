@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/ListarConsulta.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <script src="../js/ListarConsultas.js"></script>
+</head>
+<body>
+    <div class="lado_esquerdo">
+        <header>
+            <div class="contain_logo">
+                <img src="../images/icon-login.png">
+            </div>
+        </header>
+        <main>
+            <ul class="menu">
+                <li>Página Inicial</li>
+                <li>Cadastrar Médicos</li>
+                <li>Cadastrar Pacientes</li>
+                <li>Relatório de Consultas</li>
+                <li>Agendar Consultas</li>
+            </ul>
+        </main>
+        <footer>
+            <p>Todos os Direitos Reservados&copy</p>
+        </footer>
+    </div>
+    <div class="lado_direito">
+        <div class="barra_perfil">
+            <div class="left">
+                <a href="#">SpMedGroup</a>
+            </div>
+            <div class="right">
+                <a href="#">Bruno Salles</a>
+                <a href="#">Sair</a>
+                <a href="#"><i class="fas fa-user-circle"></i></a>
+            </div>
+        </div>
+
+
+        <div class="box">
+            <div class="alyasar">
+                <img src="../images/icon-login.png">
+            </div>
+            <div class="haq">
+                <label>Selecione um médico:</label>
+                <div class="top">
+                    <select>
+                        <option>Odirlei Sabella</option>
+                        <option>Gustavo Seila</option>
+                        <option>Tadeu Neves</option>
+                    </select>
+
+                    <input type="text" placeholder="Paciente">
+                </div>
+                <div class="bottom">
+                    <select>
+                        <option>Concluída</option>
+                        <option>Realizada</option>
+                        <option>Cancelada</option>
+                    </select>
+
+                    <input type="text" placeholder="Data de Consulta">
+                </div>
+                <input type="submit" value="Agendar Consulta">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

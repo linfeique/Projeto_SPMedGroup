@@ -29,6 +29,15 @@ namespace SpMedGroup
                 c.SwaggerDoc("v1", new Info { Title = "SpMedGroup", Version = "v1" });
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
+            });
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = "JwtBearer";
@@ -72,6 +81,8 @@ namespace SpMedGroup
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "SpMedGroup");
             });
+
+            app.UseCors("CorsPolicy");
 
             app.UseMvc();
         }

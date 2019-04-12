@@ -1,0 +1,119 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: myriad-pro, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+}
+
+.App{
+  background-image: url("../../assets/images/daylight-evergreen-green-23680.jpg");
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+.loginbox{
+  width: 597px;
+  height: 539px;
+  background-color: rgba(0, 0, 0, 0.72);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+}
+
+.icon-login{
+  margin-top: 40px;
+  margin-bottom: 65px;
+}
+
+.form_ext{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form_ext p{
+  margin-bottom: 10px;
+  font-size: 15pt;
+}
+
+.box-text input[type="text"]{
+  width: 413px;
+  height: 39px;
+  padding-left: 36px;
+  margin-right: 10px;
+  outline: none;
+  color: black;
+  margin-bottom: 38px;
+  background-image: url(../../assets/images/avatar.svg);
+  background-repeat: no-repeat;
+  background-size: 30px 28px;
+  background-position: left;
+  border: 0;
+}
+
+.pass_box input[type="password"]{
+  width: 413px;
+  height: 39px;
+  padding-left: 36px;
+  margin-right: 10px;
+  outline: none;
+  color: black;
+  background-image: url(../../assets/images/lock.svg);
+  background-repeat: no-repeat;
+  background-size: 30px 28px;
+  background-position: left;
+  border: 0;
+}
+
+/* 
+  Mudando cor do placeholder
+*/
+
+::-webkit-input-placeholder {
+  color: rgba(188, 184, 184, 0.363);
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  color: #BCB8B8;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  color: #BCB8B8;  
+}
+
+:-ms-input-placeholder {  
+  color: #BCB8B8;  
+}
+
+/* ---------------------------------- */
+
+.text_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.text_box i{
+  font-size: 19px;
+  color: #81DF99;
+}
+
+.text_box input[type="submit"]{
+  width: 113px;
+  height: 30px;
+  margin: auto;
+  margin-top: 38px;
+  border-radius: 5px;
+  border: none;
+  background-color: #7ABFCF;
+  font-size: 17px;
+}
