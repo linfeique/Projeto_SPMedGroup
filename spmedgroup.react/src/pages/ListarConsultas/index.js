@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './index.css';
 import img1 from '../../assets/images/icon-login.png';
-import axios from 'axios';
+import {Link} from 'react-router-dom';
+import {sair} from '../../services/auth';
 
 class ListarConsultas extends Component{
 
@@ -16,13 +17,6 @@ class ListarConsultas extends Component{
     buscarConsultas(){
 
         let token = localStorage.getItem('usuario-spmed');
-        const header = 'Authorization: Bearer ' + token;
-
-        // axios.get(`http://localhost:5000/api/consultas`, { headers : { header } })
-        //     .then(res => {
-        //         const consultas = res.data;
-        //         this.setState({ lista : consultas });
-        // })
 
         fetch('http://localhost:5000/api/consultas', {
             headers: {
@@ -68,11 +62,13 @@ class ListarConsultas extends Component{
                         <div className="right">
                             <a href="#">Bruno Salles</a>
                             <a href="#">Sair</a>
+                            <Link to={sair()}></Link>
                             <a href="#"><i className="fas fa-user-circle"></i></a>
                         </div>
                     </div>
                     <div className="container__card">
                         {
+                            
                             this.state.lista.map(function(element){
                                 return(
                                     <div className="card" key={element.id}>
