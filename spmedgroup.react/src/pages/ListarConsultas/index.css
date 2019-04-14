@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: white;
+    /* color: white; */
     font-family: myriad-pro, sans-serif;
     font-style: normal;
     font-weight: 300;
@@ -13,6 +13,7 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
+    color: white;
 }
 
 .lado_esquerdo{
@@ -63,24 +64,26 @@
 
 .lado_direito{
     width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .barra_perfil{
-    height: 55px;
-    width: 82%;
+    height: 6%;
+    width: 100%;
     background-color: #38B478;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0px 10px 0px 10px;
-    position: absolute;
-    top: 0;
-    right: 0;
 }
 
 .barra_perfil a{
     text-decoration: none;
     margin-left: 10px;
+    color: white;
 }
 
 .barra_perfil i{
@@ -93,10 +96,16 @@
 }
 
 .card{
-    width: 827px;
-    height: 104px;
+    width: 900px;
+    height: 154px;
     background-color: #E9FDF4;
-    border: 1.5px solid black;
+    border: 1.5px solid #38B478;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 20px;
+    font-size: 14px;
 }
 
 .header__two{
@@ -105,8 +114,48 @@
     justify-content: space-between;
     padding-left: 10px;
     padding-right: 10px;
+    height: 25px;
+    align-items: center;
+    border-radius: 20px 20px 0 0; 
+}
+
+.header__two a{
+    color: white;
+    text-decoration: none;
 }
 
 .main__two{
     text-align: center;
+    color: black;
+}
+
+.footer__two{
+    display: flex;
+    justify-content: space-between;
+}
+
+.data{
+    padding: 7px;
+    background-color: #00914B;
+    font-size: 14px;
+    font-weight: 100;
+    border-radius: 0 0 0 20px;
+}
+
+.btn__list{
+    margin-bottom: 7px;
+    margin-right: 6px;
+    padding: 4px;
+    border: 0.5px solid #38B478;
+    border-radius: 10px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.container__card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 94%;
 }

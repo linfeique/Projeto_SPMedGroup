@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: white;
+  /* color: white; */
   font-family: myriad-pro, sans-serif;
   font-style: normal;
   font-weight: 300;
@@ -13,6 +13,7 @@
   background-size: cover;
   width: 100vw;
   height: 100vh;
+  color: white;
 }
 
 .loginbox{
@@ -116,4 +117,5 @@
   border: none;
   background-color: #7ABFCF;
   font-size: 17px;
+  color: white;
 }
