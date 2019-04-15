@@ -3,6 +3,7 @@ import './index.css';
 import img1 from '../../assets/images/icon-login.png';
 import {Link} from 'react-router-dom';
 import {sair} from '../../services/auth';
+import jwt_decode from 'jwt-decode';
 
 class ListarConsultas extends Component{
 
@@ -33,6 +34,12 @@ class ListarConsultas extends Component{
     }
 
     render(){
+
+        let token_undecoded = localStorage.getItem('usuario-spmed');
+        let token_decoded = jwt_decode(token_undecoded);
+
+        console.log(token_decoded);
+
         return(
             <div className="body">
                 <div className="lado_esquerdo">
@@ -61,19 +68,17 @@ class ListarConsultas extends Component{
                         </div>
                         <div className="right">
                             <a href="#">Bruno Salles</a>
-                            <a href="#">Sair</a>
-                            <Link to={sair()}></Link>
+                            <Link to={sair.bind(this)}>Sair</Link>
                             <a href="#"><i className="fas fa-user-circle"></i></a>
                         </div>
                     </div>
                     <div className="container__card">
-                        {
-                            
+                        {   
                             this.state.lista.map(function(element){
                                 return(
                                     <div className="card" key={element.id}>
                                         <header className="header__two">
-                                            <span>{element.nome}</span>
+                                            <span>{element.email}</span>
                                             <a href="#">Mudar Situação</a>
                                         </header>
                                         

@@ -1,5 +1,5 @@
 export const usuarioAutenticado = () => localStorage.getItem('usuario-spmed') !== null;
 
-export function sair(props){ 
+export function sair(){ 
     localStorage.removeItem('usuario-spmed');
 };

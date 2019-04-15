@@ -18,11 +18,12 @@
 
 .lado_esquerdo{
     width: 18%;
-    height: 100vh;
+    height: 100%;
     background-color: #00914B;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    /* position: fixed; */
 }
 
 .header{
@@ -100,7 +101,7 @@
     height: 154px;
     background-color: #E9FDF4;
     border: 1.5px solid #38B478;
-    margin-bottom: 40px;
+    margin-top: 80px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
