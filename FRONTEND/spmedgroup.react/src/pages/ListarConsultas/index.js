@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 import './index.css';
 import img1 from '../../assets/images/icon-login.png';
-import {Link} from 'react-router-dom';
-import {sair} from '../../services/auth';
+import { sair } from '../../services/auth';
 import jwt_decode from 'jwt-decode';
 
-class ListarConsultas extends Component{
+class ListarConsultas extends Component {
 
-    constructor(){
+    constructor() {
         super();
 
         this.state = {
-            lista : []
+            lista: []
         }
     }
 
-    buscarConsultas(){
+    buscarConsultas() {
 
         let token = localStorage.getItem('usuario-spmed');
 
@@ -24,23 +23,27 @@ class ListarConsultas extends Component{
                 'Authorization': 'Bearer ' + token
             }
         })
-        .then(resposta => resposta.json())
-        .then(data => this.setState({lista : data}))
-        .catch(erro => console.log("Erro: ", erro))
+            .then(resposta => resposta.json())
+            .then(data => this.setState({ lista: data }))
+            .catch(erro => console.log("Erro: ", erro))
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.buscarConsultas()
     }
 
-    render(){
+    logout() {
+        console.log('ei')
+        sair();
+        this.props.history.push('/');
+    }
+
+    render() {
 
         let token_undecoded = localStorage.getItem('usuario-spmed');
         let token_decoded = jwt_decode(token_undecoded);
 
-        console.log(token_decoded);
-
-        return(
+        return (
             <div className="body">
                 <div className="lado_esquerdo">
                     <header className="header">
@@ -67,21 +70,21 @@ class ListarConsultas extends Component{
                             <a href="#">SpMedGroup</a>
                         </div>
                         <div className="right">
-                            <a href="#">Bruno Salles</a>
-                            <Link to={sair.bind(this)}>Sair</Link>
+                            <a href="#">{token_decoded.email}</a>
+                            <a onClick={this.logout.bind(this)}>Sair</a>
                             <a href="#"><i className="fas fa-user-circle"></i></a>
                         </div>
                     </div>
                     <div className="container__card">
-                        {   
-                            this.state.lista.map(function(element){
-                                return(
+                        {
+                            this.state.lista.map(function (element) {
+                                return (
                                     <div className="card" key={element.id}>
                                         <header className="header__two">
-                                            <span>{element.email}</span>
+                                            <span>{token_decoded.email}</span>
                                             <a href="#">Mudar Situação</a>
                                         </header>
-                                        
+
                                         <main className="main__two">
                                             <p>{element.descricao}</p>
                                         </main>

@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* color: white; */
     font-family: myriad-pro, sans-serif;
     font-style: normal;
     font-weight: 300;
@@ -17,13 +16,13 @@
 }
 
 .lado_esquerdo{
-    width: 18%;
+    width: 15%;
     height: 100%;
     background-color: #00914B;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* position: fixed; */
+    position: fixed;
 }
 
 .header{
@@ -69,6 +68,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-left: 15%;
 }
 
 .barra_perfil{
@@ -94,6 +94,10 @@
 .right{
     display: flex;
     align-items: center;
+}
+
+.right a{
+    cursor: pointer;
 }
 
 .card{
