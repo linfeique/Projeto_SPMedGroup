@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Route, BrowserRouter as Router, Switch, Redirect} from 'react-router-dom';
+import { usuarioAutenticado } from './services/auth';
+
 import './index.css';
 import App from './pages/Login/App';
-import * as serviceWorker from './serviceWorker';
-import {Route, BrowserRouter as Router, Switch, Redirect} from 'react-router-dom';
 import NotFound from './pages/NotFound/NotFound';
 import ListarConsulta from './pages/ListarConsultas/index';
-import { usuarioAutenticado } from './services/auth';
+import CadastraConsulta from './pages/CadastrarConsulta/index';
+
+import * as serviceWorker from './serviceWorker';
 
 const Permissao = ({component : Component}) => (
     <Route 
@@ -23,6 +26,7 @@ const rotas = (
             <Switch>
                 <Route exact path="/" component={App}/>
                 <Permissao path="/listarConsultas" component={ListarConsulta}/>
+                <Permissao path="/cadastraConsulta" component={CadastraConsulta} />
                 <Route component={NotFound}/>
             </Switch>
         </div>

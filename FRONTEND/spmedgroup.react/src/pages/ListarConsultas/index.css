@@ -51,6 +51,11 @@
     margin-bottom: 10px;
 }
 
+.menu a{
+    text-decoration: none;
+    color: white;
+}
+
 .menu li:hover{
     background-color: white;
     color: black;
@@ -73,12 +78,13 @@
 
 .barra_perfil{
     height: 6%;
-    width: 100%;
+    width: 85%;
     background-color: #38B478;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0px 10px 0px 10px;
+    position: fixed;
 }
 
 .barra_perfil a{
