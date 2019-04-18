@@ -15,7 +15,7 @@ export default class Menu extends Component {
                         <li>Página Inicial</li>
                         <li>Cadastrar Médicos</li>
                         <li>Cadastrar Pacientes</li>
-                        <li>Relatório de Consultas</li>
+                        <a href="/listarConsultas"><li>Relatório de Consultas</li></a>
                         <a href="/cadastraConsulta"><li>Agendar Consultas</li></a>
                     </ul>
                 </main>
