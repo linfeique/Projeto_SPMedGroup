@@ -24,7 +24,7 @@ class CadastroConsulta extends Component{
         this.props.history.push('/');
     }
 
-    buscarPacientes(){
+    buscarMedicos(){
         fetch('http://localhost:5000/api/medicos', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-spmed'),
@@ -36,7 +36,7 @@ class CadastroConsulta extends Component{
         .catch(erro => console.log('Erro: ', erro))
     }
 
-    buscarMedicos(){
+    buscarPacientes(){
         fetch('http://localhost:5000/api/pacientes', {
             headers: {
                 'Content-Type': 'application/json',
@@ -83,7 +83,11 @@ class CadastroConsulta extends Component{
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-spmed')
             }
         })
-        .then(res => console.log(res))
+        .then(res => {
+            if(res.status == 200){
+                alert('Consulta cadastrada com sucesso');
+            }
+        })
         .then(data => console.log(data))
         .catch(erro => console.log('Erro: ', erro))
     }
