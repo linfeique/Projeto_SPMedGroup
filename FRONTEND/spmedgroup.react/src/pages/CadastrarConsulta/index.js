@@ -4,6 +4,8 @@ import { sair } from '../../services/auth';
 import img from '../../assets/images/icon-login.png';
 import Menu from '../../Components/Menu/Menu';
 import BarraPerfil from '../../Components/BarraPerfil/BarraPerfil';
+import jwt_decode from 'jwt-decode';
+import MenuComum from '../../Components/Menu/MenuComum';
 
 class CadastroConsulta extends Component{
 
@@ -11,7 +13,7 @@ class CadastroConsulta extends Component{
         super();
 
         this.state = {
-            idMecico: null,
+            idMedico: null,
             idPaciente: null,
             listaMedicos: [],
             listaPacientes: [],
@@ -54,7 +56,7 @@ class CadastroConsulta extends Component{
     }
 
     atualizaEstadoMedico(event){
-        this.setState({idMecico : event.target.value})
+        this.setState({idMedico : event.target.value})
     }
 
     atualizaEstadoPaciente(event){
@@ -70,7 +72,7 @@ class CadastroConsulta extends Component{
 
         let consulta = {
             idPaciente: this.state.idPaciente,
-            idMecico: this.state.idMecico,
+            idMedico: this.state.idMedico,
             idSituacao: 3,
             dataConsulta: this.state.dataConsulta
         }
@@ -93,9 +95,14 @@ class CadastroConsulta extends Component{
     }
 
     render(){
+        let token_undecoded = localStorage.getItem('usuario-spmed');
+        let token_decoded = jwt_decode(token_undecoded);
         return(
             <div className="body">
                 <Menu />
+                {   
+                    (token_decoded.tipoUsuarioReact == 'Administrador') ? <Menu /> : <MenuComum />
+                }
                 <div className="register_lado_direito">
                     <BarraPerfil />
 
@@ -105,7 +112,7 @@ class CadastroConsulta extends Component{
                         </div>
                         <div>
                             <form className="haq" onSubmit={this.agendaConsulta.bind(this)}>
-                                <select value={this.state.idMecico} onChange={this.atualizaEstadoMedico.bind(this)}>
+                                <select value={this.state.idMedico} onChange={this.atualizaEstadoMedico.bind(this)}>
                                     <option>Selecione um médico</option>
                                     {
                                         this.state.listaMedicos.map(function(element){

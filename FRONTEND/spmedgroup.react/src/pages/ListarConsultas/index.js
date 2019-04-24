@@ -3,6 +3,8 @@ import './index.css';
 import jwt_decode from 'jwt-decode';
 import BarraPerfil from '../../Components/BarraPerfil/BarraPerfil';
 import Menu from '../../Components/Menu/Menu';
+import MenuComum from '../../Components/Menu/MenuComum';
+import Axios from 'axios';
 
 class ListarConsultas extends Component {
 
@@ -39,19 +41,21 @@ class ListarConsultas extends Component {
 
         return (
             <div className="body">
-                <Menu />
+                {
+                    (token_decoded.tipoUsuarioReact == "Administrador") ? <Menu /> : <MenuComum />
+                }
                 <div className="lado_direito">
                     <BarraPerfil />
                     <div className="container__card">
                         {
-                            this.state.lista.map(function (element) {
+                            this.state.lista.map((element) => {
                                 return (
                                     <div className="card" key={element.id}>
+                                        
                                         <header className="header__two">
-                                            <span>{token_decoded.email}</span>
+                                            <p>{ element.idMedicoNavigation != null ? element.idMedicoNavigation.nome : ""}</p>
                                             <a href="#">Mudar Situação</a>
                                         </header>
-
                                         <main className="main__two">
                                             <p>{element.descricao}</p>
                                         </main>
