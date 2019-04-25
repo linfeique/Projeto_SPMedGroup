@@ -17,6 +17,8 @@ class CadastroConsulta extends Component{
             idPaciente: null,
             listaMedicos: [],
             listaPacientes: [],
+            data: '',
+            hora: '',
             dataConsulta: ''
         }
     }
@@ -64,7 +66,15 @@ class CadastroConsulta extends Component{
     }
 
     atualizaEstadoData(event){
-        this.setState({dataConsulta : event.target.value})
+        this.setState({data : event.target.value})
+    }
+
+    atualizaEstadoHora(event){
+        this.setState({hora : event.target.value})
+    }
+
+    atualizaEstadoDataHoraConsulta(){
+        this.setState({dataConsulta: this.state.data + 'T' + this.state.hora})
     }
 
     agendaConsulta(event){
@@ -88,6 +98,8 @@ class CadastroConsulta extends Component{
         .then(res => {
             if(res.status == 200){
                 alert('Consulta cadastrada com sucesso');
+            } else{
+                alert('Algo está inválido');
             }
         })
         .then(data => console.log(data))
@@ -112,7 +124,7 @@ class CadastroConsulta extends Component{
                         </div>
                         <div>
                             <form className="haq" onSubmit={this.agendaConsulta.bind(this)}>
-                                <select value={this.state.idMedico} onChange={this.atualizaEstadoMedico.bind(this)}>
+                                <select value={this.state.idMedico} onChange={this.atualizaEstadoMedico.bind(this)} required>
                                     <option>Selecione um médico</option>
                                     {
                                         this.state.listaMedicos.map(function(element){
@@ -123,7 +135,7 @@ class CadastroConsulta extends Component{
                                     }
                                 </select>
 
-                                <select value={this.state.idPaciente} onChange={this.atualizaEstadoPaciente.bind(this)}>
+                                <select value={this.state.idPaciente} onChange={this.atualizaEstadoPaciente.bind(this)} required>
                                     <option>Selecione o paciente</option>
                                     {
                                         this.state.listaPacientes.map(function(element){
@@ -136,15 +148,26 @@ class CadastroConsulta extends Component{
 
                                 <input 
                                     className="register__data" 
-                                    type="date" 
+                                    type="date"
                                     placeholder="Data de Consulta" 
-                                    value={this.state.dataConsulta} 
+                                    value={this.state.data} 
                                     onChange={this.atualizaEstadoData.bind(this)}
+                                    required
                                 />
+                                <input 
+                                    className="register__data" 
+                                    type="time"
+                                    placeholder="Hora da Consulta" 
+                                    value={this.state.hora}
+                                    onChange={this.atualizaEstadoHora.bind(this)}
+                                    required
+                                />
+
                                 <input 
                                     className="register__btn" 
                                     type="submit" 
-                                    value="Agendar" 
+                                    value="Agendar"
+                                    onClick={this.atualizaEstadoDataHoraConsulta.bind(this)}
                                 />
                             </form>
                         </div>

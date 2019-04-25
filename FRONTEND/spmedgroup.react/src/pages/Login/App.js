@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import '../../../node_modules/font-awesome/css/font-awesome.min.css'
 import img1 from '../../assets/images/icon-login.png';
 import axios from 'axios';
 

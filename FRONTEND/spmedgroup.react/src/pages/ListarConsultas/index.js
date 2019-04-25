@@ -4,7 +4,6 @@ import jwt_decode from 'jwt-decode';
 import BarraPerfil from '../../Components/BarraPerfil/BarraPerfil';
 import Menu from '../../Components/Menu/Menu';
 import MenuComum from '../../Components/Menu/MenuComum';
-import Axios from 'axios';
 
 class ListarConsultas extends Component {
 
@@ -53,8 +52,8 @@ class ListarConsultas extends Component {
                                     <div className="card" key={element.id}>
                                         
                                         <header className="header__two">
-                                            <p>{ element.idMedicoNavigation != null ? element.idMedicoNavigation.nome : ""}</p>
-                                            <a href="#">Mudar Situação</a>
+                                            <p>Médico: { element.idMedicoNavigation != null ? element.idMedicoNavigation.nome : ""}</p>
+                                            <a href="#">Situação atual: {element.idSituacaoNavigation.situacao} | Mudar Situação</a>
                                         </header>
                                         <main className="main__two">
                                             <p>{element.descricao}</p>
@@ -63,7 +62,10 @@ class ListarConsultas extends Component {
                                             <div className="data">
                                                 <span>{element.dataConsulta}</span>
                                             </div>
-                                            <button className="btn__list">Saiba Mais</button>
+                                            <div>
+                                                <button className="btn__list">Atualizar Descrição</button>
+                                                <button className="btn__list">Saiba Mais</button>
+                                            </div>
                                         </footer>
                                     </div>
                                 );
