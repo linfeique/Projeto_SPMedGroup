@@ -56,7 +56,7 @@ namespace SPMedGroup.Repositories
         {
             using (SpMedGroupContext ctx = new SpMedGroupContext())
             {
-                return ctx.Consultas.Include(x => x.IdMedicoNavigation).Include(x => x.IdSituacaoNavigation).ToList();
+                return ctx.Consultas.Include(x => x.IdMedicoNavigation).ToList();
             }
         }
 
@@ -64,7 +64,7 @@ namespace SPMedGroup.Repositories
         {
             using (SpMedGroupContext ctx = new SpMedGroupContext())
             {
-                return ctx.Consultas.Include(x => x.IdMedicoNavigation).Include(x => x.IdSituacaoNavigation).Where(x => x.IdMedicoNavigation.IdUsuario == id).ToList();
+                return ctx.Consultas.Include(x => x.IdMedicoNavigation).Where(x => x.IdMedicoNavigation.IdUsuario == id).ToList();
             }
         }
 

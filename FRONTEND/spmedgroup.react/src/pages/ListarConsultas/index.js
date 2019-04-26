@@ -4,6 +4,7 @@ import jwt_decode from 'jwt-decode';
 import BarraPerfil from '../../Components/BarraPerfil/BarraPerfil';
 import Menu from '../../Components/Menu/Menu';
 import MenuComum from '../../Components/Menu/MenuComum';
+import ModalEspec from '../../Components/ModalEspecificacoes/index';
 
 class ListarConsultas extends Component {
 
@@ -33,6 +34,10 @@ class ListarConsultas extends Component {
         this.buscarConsultas()
     }
 
+    openButton(){
+        return(<ModalEspec />);
+    }
+
     render() {
 
         let token_undecoded = localStorage.getItem('usuario-spmed');
@@ -53,7 +58,7 @@ class ListarConsultas extends Component {
                                         
                                         <header className="header__two">
                                             <p>Médico: { element.idMedicoNavigation != null ? element.idMedicoNavigation.nome : ""}</p>
-                                            <a href="#">Situação atual: {element.idSituacaoNavigation.situacao} | Mudar Situação</a>
+                                            <a href="#">Situação atual: Agendada | Mudar Situação</a>
                                         </header>
                                         <main className="main__two">
                                             <p>{element.descricao}</p>
@@ -64,7 +69,7 @@ class ListarConsultas extends Component {
                                             </div>
                                             <div>
                                                 <button className="btn__list">Atualizar Descrição</button>
-                                                <button className="btn__list">Saiba Mais</button>
+                                                <button className="btn__list" onClick={this.openButton.bind(this)}>Saiba Mais</button>
                                             </div>
                                         </footer>
                                     </div>
