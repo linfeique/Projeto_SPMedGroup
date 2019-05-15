@@ -6,13 +6,12 @@ import {
     TextInput, 
     TouchableOpacity, 
     Image,
-    ImageBackground,
-    AsyncStorage,
-    Alert
+    ImageBackground
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Logo from '../assets/images/icon-login.png';
 import axios from 'axios';
+import auth from "services/auth";
 
 class Login extends Component {
     static navigationOptions = {
@@ -28,23 +27,26 @@ class Login extends Component {
         }
     }
 
-    _realizarLogin(){
+    _realizarLogin = async () => {
 
         let login = {
             email: this.state.email,
             senha: this.state.senha
         }
 
-        axios.post('http://localhost:5000/api/login', login, {
+        await axios.post('http://192.168.56.1:5000/api/login', login, {
             headers: {
                 'Content-Type': 'application/json'
             }
         })
         .then(response => {
             const token = response.data;
-            let teste = AsyncStorage.setItem('usr-spmed', token);
+            auth.setItem(token)
+            auth.getItem().then(res => teste = res);
+
+            this.props.navigation.navigate('ListaMedicos');
         })
-        .catch(error => Alert.alert(error))
+        .catch(error => console.warn('Erro', error))
     }
 
     render(){
@@ -69,6 +71,7 @@ class Login extends Component {
                                     placeholderTextColor="#FFFFFF"
                                     underlineColorAndroid="#FFFFFF"
                                     onChangeText={email => this.setState({ email })}
+                                    defaultValue="ricardo.lemos@spmedicalgroup.com.br"
                                 />
                             </View>
 
@@ -83,7 +86,9 @@ class Login extends Component {
                                     placeholder="Password"
                                     placeholderTextColor="#FFFFFF"
                                     underlineColorAndroid="#FFFFFF"
-                                    onChangeText={password => this.setState({ password })}
+                                    onChangeText={senha => this.setState({ senha })}
+                                    defaultValue="123456"
+                                    secureTextEntry={true}
                                 />
                             </View>
 
@@ -124,7 +129,8 @@ const styles = StyleSheet.create({
 
     mainLogo: {
         width: 150,
-        height: 150
+        height: 150,
+        resizeMode: 'contain'
     },
 
     container: {
