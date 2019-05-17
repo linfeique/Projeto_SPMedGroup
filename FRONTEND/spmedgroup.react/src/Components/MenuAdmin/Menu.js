@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import img1 from '../../assets/images/icon-login.png';
 
-export default class Menu extends Component {
+export default class MenuAdmin extends Component {
     render(){
         return (
             <div className="lado_esquerdo">

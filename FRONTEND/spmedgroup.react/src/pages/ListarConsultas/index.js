@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './index.css';
 import jwt_decode from 'jwt-decode';
 import BarraPerfil from '../../Components/BarraPerfil/BarraPerfil';
-import Menu from '../../Components/Menu/Menu';
+import MenuAdmin from '../../Components/MenuAdmin/Menu';
+import MenuComum from '../../Components/MenuComum/Menu';
 
 class ListarConsultas extends Component {
 
@@ -37,9 +38,21 @@ class ListarConsultas extends Component {
         let token_undecoded = localStorage.getItem('usuario-spmed');
         let token_decoded = jwt_decode(token_undecoded);
 
+        console.log(token_decoded);
+
         return (
             <div className="body">
-                <Menu />
+                {
+                    (
+                        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role" 
+                        == 
+                        'Médico' 
+                        || 
+                        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+                        ==
+                        'Paciente'
+                        ) ? <MenuComum /> : <MenuAdmin />
+                }
                 <div className="lado_direito">
                     <BarraPerfil />
                     <div className="container__card">

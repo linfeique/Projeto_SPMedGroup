@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './index.css';
 import { sair } from '../../services/auth';
 import img from '../../assets/images/icon-login.png';
-import Menu from '../../Components/Menu/Menu';
+import MenuAdmin from '../../Components/MenuAdmin/Menu';
+import MenuComum from '../../Components/MenuComum/Menu';
 import BarraPerfil from '../../Components/BarraPerfil/BarraPerfil';
 
 class CadastroConsulta extends Component{
@@ -91,7 +92,9 @@ class CadastroConsulta extends Component{
     render(){
         return(
             <div className="body">
-                <Menu />
+                {
+                    (10 > 5) ? <MenuAdmin /> : <MenuComum />
+                }
                 <div className="register_lado_direito">
                     <BarraPerfil />
 
