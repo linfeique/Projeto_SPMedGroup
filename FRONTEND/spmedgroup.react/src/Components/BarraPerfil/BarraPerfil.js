@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import {sair} from '../../services/auth';
 import jwt_decode from 'jwt-decode';
+import {Link} from 'react-router-dom';
 
 export default class BarraPerfil extends Component{
-
-    logout() {
-        sair();
-        this.props.history.push('/');
-    }
-
     render(){
 
         let token_undecoded = localStorage.getItem('usuario-spmed');
@@ -21,7 +16,7 @@ export default class BarraPerfil extends Component{
                 </div>
                 <div className="right">
                     <a href="#">{token_decoded.email}</a>
-                    <a onClick={this.logout.bind(this)}>Sair</a>
+                    <Link onClick={sair} to="/">Sair</Link>
                     <a href="#"><i className="fas fa-user-circle"></i></a>
                 </div>
             </div>

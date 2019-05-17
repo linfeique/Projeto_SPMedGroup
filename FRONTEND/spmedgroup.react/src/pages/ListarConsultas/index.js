@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import './index.css';
 import jwt_decode from 'jwt-decode';
 import BarraPerfil from '../../Components/BarraPerfil/BarraPerfil';
+<<<<<<< HEAD
 import MenuAdmin from '../../Components/MenuAdmin/Menu';
 import MenuComum from '../../Components/MenuComum/Menu';
+=======
+import Menu from '../../Components/Menu/Menu';
+import MenuComum from '../../Components/Menu/MenuComum';
+import ModalEspec from '../../Components/ModalEspecificacoes/index';
+>>>>>>> d1d30ea32a9328b3ae494c5d66a73c7afb8a0b08
 
 class ListarConsultas extends Component {
 
@@ -33,6 +39,10 @@ class ListarConsultas extends Component {
         this.buscarConsultas()
     }
 
+    openButton(){
+        return(<ModalEspec />);
+    }
+
     render() {
 
         let token_undecoded = localStorage.getItem('usuario-spmed');
@@ -43,6 +53,7 @@ class ListarConsultas extends Component {
         return (
             <div className="body">
                 {
+<<<<<<< HEAD
                     (
                         "http://schemas.microsoft.com/ws/2008/06/identity/claims/role" 
                         == 
@@ -52,19 +63,22 @@ class ListarConsultas extends Component {
                         ==
                         'Paciente'
                         ) ? <MenuComum /> : <MenuAdmin />
+=======
+                    (token_decoded.tipoUsuarioReact == "Administrador") ? <Menu /> : <MenuComum />
+>>>>>>> d1d30ea32a9328b3ae494c5d66a73c7afb8a0b08
                 }
                 <div className="lado_direito">
                     <BarraPerfil />
                     <div className="container__card">
                         {
-                            this.state.lista.map(function (element) {
+                            this.state.lista.map((element) => {
                                 return (
                                     <div className="card" key={element.id}>
+                                        
                                         <header className="header__two">
-                                            <span>{token_decoded.email}</span>
-                                            <a href="#">Mudar Situação</a>
+                                            <p>Médico: { element.idMedicoNavigation != null ? element.idMedicoNavigation.nome : ""}</p>
+                                            <a href="#">Situação atual: Agendada | Mudar Situação</a>
                                         </header>
-
                                         <main className="main__two">
                                             <p>{element.descricao}</p>
                                         </main>
@@ -72,7 +86,10 @@ class ListarConsultas extends Component {
                                             <div className="data">
                                                 <span>{element.dataConsulta}</span>
                                             </div>
-                                            <button className="btn__list">Saiba Mais</button>
+                                            <div>
+                                                <button className="btn__list">Atualizar Descrição</button>
+                                                <button className="btn__list" onClick={this.openButton.bind(this)}>Saiba Mais</button>
+                                            </div>
                                         </footer>
                                     </div>
                                 );

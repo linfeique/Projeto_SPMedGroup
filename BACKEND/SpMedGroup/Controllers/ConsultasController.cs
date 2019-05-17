@@ -124,5 +124,20 @@ namespace SPMedGroup.Controllers
                 return BadRequest();
             }
         }
+
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete]
+        public IActionResult Deletar(Consultas consulta)
+        {
+            try
+            {
+                consultaRepositorio.Deletar(consulta);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

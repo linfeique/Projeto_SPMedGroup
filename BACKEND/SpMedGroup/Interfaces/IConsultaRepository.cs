@@ -19,5 +19,7 @@ namespace SPMedGroup.Interfaces
         void Alterar(Consultas consulta);
 
         Consultas BuscarPorId(int id);
+
+        void Deletar(Consultas consulta);
     }
 }

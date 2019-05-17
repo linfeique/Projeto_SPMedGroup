@@ -43,11 +43,20 @@ namespace SPMedGroup.Repositories
             }
         }
 
+        public void Deletar(Consultas consulta)
+        {
+            using (SpMedGroupContext ctx = new SpMedGroupContext())
+            {
+                ctx.Consultas.Remove(consulta);
+                ctx.SaveChanges();
+            }
+        }
+
         public List<Consultas> Listar()
         {
             using (SpMedGroupContext ctx = new SpMedGroupContext())
             {
-                return ctx.Consultas.ToList();
+                return ctx.Consultas.Include(x => x.IdMedicoNavigation).ToList();
             }
         }
 
@@ -55,7 +64,7 @@ namespace SPMedGroup.Repositories
         {
             using (SpMedGroupContext ctx = new SpMedGroupContext())
             {
-                return ctx.Consultas.Where(x => x.IdMedicoNavigation.IdUsuario == id).ToList();
+                return ctx.Consultas.Include(x => x.IdMedicoNavigation).Where(x => x.IdMedicoNavigation.IdUsuario == id).ToList();
             }
         }
 
@@ -64,7 +73,7 @@ namespace SPMedGroup.Repositories
             using (SpMedGroupContext ctx = new SpMedGroupContext())
             {
                 //return ctx.Consultas.Where(x => x.IdPacienteNavigation.IdUsuario == id).ToList();
-                return ctx.Consultas.Where(x => x.IdPacienteNavigation.Id == id).ToList();
+                return ctx.Consultas.Include(x => x.IdMedicoNavigation).Where(x => x.IdPacienteNavigation.Id == id).ToList();
             }
         }
     }

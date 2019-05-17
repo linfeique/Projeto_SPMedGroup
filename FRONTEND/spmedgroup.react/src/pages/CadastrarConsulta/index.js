@@ -5,6 +5,8 @@ import img from '../../assets/images/icon-login.png';
 import MenuAdmin from '../../Components/MenuAdmin/Menu';
 import MenuComum from '../../Components/MenuComum/Menu';
 import BarraPerfil from '../../Components/BarraPerfil/BarraPerfil';
+import jwt_decode from 'jwt-decode';
+import MenuComum from '../../Components/Menu/MenuComum';
 
 class CadastroConsulta extends Component{
 
@@ -12,10 +14,12 @@ class CadastroConsulta extends Component{
         super();
 
         this.state = {
-            idMecico: null,
+            idMedico: null,
             idPaciente: null,
             listaMedicos: [],
             listaPacientes: [],
+            data: '',
+            hora: '',
             dataConsulta: ''
         }
     }
@@ -25,7 +29,7 @@ class CadastroConsulta extends Component{
         this.props.history.push('/');
     }
 
-    buscarPacientes(){
+    buscarMedicos(){
         fetch('http://localhost:5000/api/medicos', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-spmed'),
@@ -37,7 +41,7 @@ class CadastroConsulta extends Component{
         .catch(erro => console.log('Erro: ', erro))
     }
 
-    buscarMedicos(){
+    buscarPacientes(){
         fetch('http://localhost:5000/api/pacientes', {
             headers: {
                 'Content-Type': 'application/json',
@@ -55,7 +59,7 @@ class CadastroConsulta extends Component{
     }
 
     atualizaEstadoMedico(event){
-        this.setState({idMecico : event.target.value})
+        this.setState({idMedico : event.target.value})
     }
 
     atualizaEstadoPaciente(event){
@@ -63,7 +67,15 @@ class CadastroConsulta extends Component{
     }
 
     atualizaEstadoData(event){
-        this.setState({dataConsulta : event.target.value})
+        this.setState({data : event.target.value})
+    }
+
+    atualizaEstadoHora(event){
+        this.setState({hora : event.target.value})
+    }
+
+    atualizaEstadoDataHoraConsulta(){
+        this.setState({dataConsulta: this.state.data + 'T' + this.state.hora})
     }
 
     agendaConsulta(event){
@@ -71,7 +83,7 @@ class CadastroConsulta extends Component{
 
         let consulta = {
             idPaciente: this.state.idPaciente,
-            idMecico: this.state.idMecico,
+            idMedico: this.state.idMedico,
             idSituacao: 3,
             dataConsulta: this.state.dataConsulta
         }
@@ -84,16 +96,30 @@ class CadastroConsulta extends Component{
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-spmed')
             }
         })
-        .then(res => console.log(res))
+        .then(res => {
+            if(res.status == 200){
+                alert('Consulta cadastrada com sucesso');
+            } else{
+                alert('Algo está inválido');
+            }
+        })
         .then(data => console.log(data))
         .catch(erro => console.log('Erro: ', erro))
     }
 
     render(){
+        let token_undecoded = localStorage.getItem('usuario-spmed');
+        let token_decoded = jwt_decode(token_undecoded);
         return(
             <div className="body">
+<<<<<<< HEAD
                 {
                     (10 > 5) ? <MenuAdmin /> : <MenuComum />
+=======
+                <Menu />
+                {   
+                    (token_decoded.tipoUsuarioReact == 'Administrador') ? <Menu /> : <MenuComum />
+>>>>>>> d1d30ea32a9328b3ae494c5d66a73c7afb8a0b08
                 }
                 <div className="register_lado_direito">
                     <BarraPerfil />
@@ -104,7 +130,7 @@ class CadastroConsulta extends Component{
                         </div>
                         <div>
                             <form className="haq" onSubmit={this.agendaConsulta.bind(this)}>
-                                <select value={this.state.idMecico} onChange={this.atualizaEstadoMedico.bind(this)}>
+                                <select value={this.state.idMedico} onChange={this.atualizaEstadoMedico.bind(this)} required>
                                     <option>Selecione um médico</option>
                                     {
                                         this.state.listaMedicos.map(function(element){
@@ -115,7 +141,7 @@ class CadastroConsulta extends Component{
                                     }
                                 </select>
 
-                                <select value={this.state.idPaciente} onChange={this.atualizaEstadoPaciente.bind(this)}>
+                                <select value={this.state.idPaciente} onChange={this.atualizaEstadoPaciente.bind(this)} required>
                                     <option>Selecione o paciente</option>
                                     {
                                         this.state.listaPacientes.map(function(element){
@@ -128,15 +154,26 @@ class CadastroConsulta extends Component{
 
                                 <input 
                                     className="register__data" 
-                                    type="date" 
+                                    type="date"
                                     placeholder="Data de Consulta" 
-                                    value={this.state.dataConsulta} 
+                                    value={this.state.data} 
                                     onChange={this.atualizaEstadoData.bind(this)}
+                                    required
                                 />
+                                <input 
+                                    className="register__data" 
+                                    type="time"
+                                    placeholder="Hora da Consulta" 
+                                    value={this.state.hora}
+                                    onChange={this.atualizaEstadoHora.bind(this)}
+                                    required
+                                />
+
                                 <input 
                                     className="register__btn" 
                                     type="submit" 
-                                    value="Agendar" 
+                                    value="Agendar"
+                                    onClick={this.atualizaEstadoDataHoraConsulta.bind(this)}
                                 />
                             </form>
                         </div>
