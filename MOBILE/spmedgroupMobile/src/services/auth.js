@@ -1,6 +1,6 @@
 import { AsyncStorage } from "react-native";
 
-const USER_KEY = "spmed-token";
+const USER_KEY = "usr-med";
 
 export default {
     async setItem(value) {

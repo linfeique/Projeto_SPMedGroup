@@ -12,6 +12,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import Logo from '../assets/images/icon-login.png';
 import axios from 'axios';
 import auth from "services/auth";
+import {verify} from "services/verificaLogado"
 
 class Login extends Component {
     static navigationOptions = {
@@ -41,9 +42,7 @@ class Login extends Component {
         })
         .then(response => {
             const token = response.data;
-            auth.setItem(token)
-            auth.getItem().then(res => teste = res);
-
+            auth.setItem(token);
             this.props.navigation.navigate('ListaMedicos');
         })
         .catch(error => console.warn('Erro', error))

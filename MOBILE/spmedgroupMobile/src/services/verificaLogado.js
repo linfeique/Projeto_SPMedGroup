@@ -2,7 +2,6 @@ import auth from 'services/auth';
 import jwt from 'jwt-decode';
 
 export function verify(){
-    
     auth.getItem().then(res => token = res)
 
     let token_decoded = jwt(token);
@@ -11,7 +10,9 @@ export function verify(){
         this.props.navigation.navigate('ListaMedicos');
     } else if(token_decoded.tipoUsuarioReact = "Paciente"){
         this.props.navigation.navigate('ListaPacientes');
+    } else if(token_decoded.tipoUsuarioReact = "Administrador"){
+        this.props.navigation.navigate('ListaMedicos');
     } else{
-        this.props.navigation.navigate('Login');
+        this.props.navigation.navigate('Login')
     }
 }
