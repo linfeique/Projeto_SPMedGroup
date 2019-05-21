@@ -43,6 +43,7 @@ namespace SPMedGroup.Controllers
 
                 var claims = new[]
                 {
+                    new Claim(JwtRegisteredClaimNames.Jti, usuario.Id.ToString()),
                     new Claim(JwtRegisteredClaimNames.Email, usuario.Email),
                     new Claim("IdUsuario", usuario.Id.ToString()),
                     new Claim(ClaimTypes.Role, usuario.IdTipoUsuarioNavigation.Tipo),

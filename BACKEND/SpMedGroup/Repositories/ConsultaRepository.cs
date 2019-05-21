@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SpMedGroup.Domains;
+using SpMedGroup.Repositories;
 using SPMedGroup.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -56,7 +57,21 @@ namespace SPMedGroup.Repositories
         {
             using (SpMedGroupContext ctx = new SpMedGroupContext())
             {
-                return ctx.Consultas.Include(x => x.IdMedicoNavigation).ToList();
+                //return ctx.Consultas.Include(x => x.IdSituacaoNavigation).Include(x => x.IdMedicoNavigation.Consultas).ToList();
+                List<Consultas> listaConsulta = ctx.Consultas
+                        .Include(x => x.IdPacienteNavigation)
+                        .Include(x => x.IdMedicoNavigation)
+                        .Include(x => x.IdMedicoNavigation.IdUsuarioNavigation)
+                        .Include(x => x.IdMedicoNavigation.IdEspecialidadeNavigation)
+                        .Include(x => x.IdSituacaoNavigation)
+                        .ToList();
+                foreach (var item in listaConsulta)
+                {
+                    item.IdPacienteNavigation.Consultas = null;
+                    item.IdMedicoNavigation.Consultas = null;
+                    item.IdSituacaoNavigation.Consultas = null;
+                }
+                return listaConsulta;
             }
         }
 
@@ -64,7 +79,28 @@ namespace SPMedGroup.Repositories
         {
             using (SpMedGroupContext ctx = new SpMedGroupContext())
             {
-                return ctx.Consultas.Include(x => x.IdMedicoNavigation).Where(x => x.IdMedicoNavigation.IdUsuario == id).ToList();
+                //return ctx.Consultas.Include(x => x.IdSituacaoNavigation).Include(x => x.IdMedicoNavigation.Consultas).Where(x => x.IdMedicoNavigation.IdUsuario == id).ToList();
+
+                Medicos medico = ctx.Medicos.FirstOrDefault(x => x.IdUsuario == id);
+                List<Consultas> listaConsulta = ctx.Consultas
+
+                    .Include(x => x.IdPacienteNavigation)
+                    .Include(x => x.IdMedicoNavigation)
+                    .Include(x => x.IdMedicoNavigation.IdUsuarioNavigation)
+                    .Include(x => x.IdMedicoNavigation.IdEspecialidadeNavigation)
+                    .Include(x => x.IdSituacaoNavigation)
+                    .Where(x => x.IdMedico == medico.Id)
+                    .ToList();
+
+                //Usar framework DAPPER                    
+
+                foreach (var item in listaConsulta)
+                {
+                    item.IdPacienteNavigation.Consultas = null;
+                    item.IdMedicoNavigation.Consultas = null;
+                    item.IdSituacaoNavigation.Consultas = null;
+                }
+                return listaConsulta;
             }
         }
 
@@ -73,7 +109,25 @@ namespace SPMedGroup.Repositories
             using (SpMedGroupContext ctx = new SpMedGroupContext())
             {
                 //return ctx.Consultas.Where(x => x.IdPacienteNavigation.IdUsuario == id).ToList();
-                return ctx.Consultas.Include(x => x.IdMedicoNavigation).Where(x => x.IdPacienteNavigation.Id == id).ToList();
+                //return ctx.Consultas.Include(x => x.IdSituacaoNavigation).Include(x => x.IdMedicoNavigation.Consultas).Where(x => x.IdPacienteNavigation.Id == id).ToList();
+
+                Pacientes prontuario = ctx.Pacientes.Where(x => x.Id == id).FirstOrDefault();
+                List<Consultas> listaConsulta = ctx.Consultas
+                    .Include(x => x.IdPacienteNavigation)
+                    .Include(x => x.IdMedicoNavigation)
+                    .Include(x => x.IdMedicoNavigation.IdUsuarioNavigation)
+                    .Include(x => x.IdMedicoNavigation.IdEspecialidadeNavigation)
+                    .Include(x => x.IdSituacaoNavigation)
+                    .Where(x => x.IdPaciente == prontuario.Id)
+                    .ToList();
+
+                foreach (var item in listaConsulta)
+                {
+                    item.IdPacienteNavigation.Consultas = null;
+                    item.IdMedicoNavigation.Consultas = null;
+                    item.IdSituacaoNavigation.Consultas = null;
+                }
+                return listaConsulta;
             }
         }
     }

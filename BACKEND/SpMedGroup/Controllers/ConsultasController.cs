@@ -38,7 +38,7 @@ namespace SPMedGroup.Controllers
 
                 // dúvida: ele é médico ou paciente?
                 // se médico,você terá um repository que liste as consultas daquele médico
-                if (role == "Médico")
+                if (role == "Medico")
                 {
                     return Ok(consultaRepositorio.ListarConsultasMedico(id));
                 }

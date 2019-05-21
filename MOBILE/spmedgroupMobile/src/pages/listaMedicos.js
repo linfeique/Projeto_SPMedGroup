@@ -17,21 +17,22 @@ class ListaMedicos extends Component {
         }
     }
 
-    buscarConsultas(){
-        let teste = auth.getItem().then(res => res);
-        
-        axios.get("http://192.168.56.1:5000/api/consultas", {
+    buscarConsultas = async () => {
+        await auth.getItem().then((res) => {
+            let token = res.token;
+            axios.get("http://192.168.3.93:5000/api/consultas", {
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + teste
+                "Authorization": "Bearer " + token
             }
-        })
-        .then(res => this.setState({lista : res.data}))
-        .catch(error => console.warn("Erro:", error))
+            })
+            .then(res => this.setState({lista : res.data}))
+            .catch(error => console.warn("Erro:", error))
+        });
     }
 
     componentDidMount(){
-        this.buscarConsultas;
+        this.buscarConsultas();
     }
 
     render(){
@@ -69,7 +70,8 @@ class ListaMedicos extends Component {
                 <Text>{item.descricao}</Text>
             </View>
             <View style={styles.cardFooter}>
-                <Text>Data da Consulta: {item.dataConsulta}</Text>
+                <Text>Paciente: {item.idPacienteNavigation.nome}</Text>
+                <Text>{item.dataConsulta}</Text>
             </View>
         </View>
     ); 
@@ -83,11 +85,11 @@ const styles = StyleSheet.create({
 
     header: {
         height: 60,
-        backgroundColor: 'red',
+        backgroundColor: '#009B50',
         flexDirection: 'row',
         padding: 10,
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
     },
 
     nameHeader: {
@@ -100,10 +102,44 @@ const styles = StyleSheet.create({
     },
 
     card: {
-        width: 200,
-        height: 200,
-        borderWidth: 1,
+        width: 340,
+        height: 250,
+        borderWidth: 0.4,
         borderColor: "black",
+        marginTop: 25,
+        justifyContent: 'space-between',
+        borderRadius: 10,
+    },
+
+    cardHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        borderBottomWidth: 0.2,
+        padding: 7,
+        backgroundColor: '#00e676',
+        borderTopRightRadius: 10,
+        borderTopLeftRadius: 10,
+    },
+
+    cardMain: {
+        backgroundColor: '#b9f6ca',
+        height: 183,
+        padding: 7
+    },
+
+    cardFooter: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 7,
+        borderTopWidth: 0.2,
+        backgroundColor: '#00e676',
+        borderBottomRightRadius: 10,
+        borderBottomLeftRadius: 10,
+    },
+
+    mainBodyConteudo: {
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 

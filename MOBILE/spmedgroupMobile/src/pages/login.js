@@ -35,15 +35,20 @@ class Login extends Component {
             senha: this.state.senha
         }
 
-        await axios.post('http://192.168.56.1:5000/api/login', login, {
+        await axios.post('http://192.168.3.93:5000/api/login', login, {
             headers: {
                 'Content-Type': 'application/json'
             }
         })
         .then(response => {
             const token = response.data;
-            auth.setItem(token);
-            this.props.navigation.navigate('ListaMedicos');
+            auth.setItem(token).then(() => {
+                auth.getItem().then(res => {
+                    // console.warn(res)    
+                    this.props.navigation.navigate('ListaMedicos');
+                });
+            });
+            
         })
         .catch(error => console.warn('Erro', error))
     }

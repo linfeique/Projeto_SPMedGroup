@@ -42,7 +42,7 @@ export default createAppContainer(
         },
 
         {
-            initialRouteName: "Stack"
+            initialRouteName: "MainNavigator"
         }
     )
 );
