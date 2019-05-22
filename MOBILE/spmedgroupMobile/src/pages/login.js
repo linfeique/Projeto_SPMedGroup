@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
-import { 
-    View, 
-    StyleSheet, 
-    Text, 
-    TextInput, 
-    TouchableOpacity, 
+import {
+    View,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
     Image,
-    ImageBackground
+    ImageBackground,
+    Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Logo from '../assets/images/icon-login.png';
 import axios from 'axios';
 import auth from "services/auth";
+import jwt from 'jwt-decode';
 
 class Login extends Component {
     static navigationOptions = {
         header: null
     };
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -34,35 +36,46 @@ class Login extends Component {
             senha: this.state.senha
         }
 
-        await axios.post('http://192.168.1.103:5000/api/login', login, {
+        await axios.post('http://192.168.3.93:5000/api/login', login, {
             headers: {
                 'Content-Type': 'application/json'
             }
         })
-        .then(response => {
-            const token = response.data;
-            auth.setItem(token).then(() => {
-                auth.getItem().then(res => {
-                    // console.warn(res)    
-                    this.props.navigation.navigate('ListaMedicos');
+            .then(response => {
+                const token = response.data;
+                auth.setItem(token).then(() => {
+                    auth.getItem().then(res => {
+                        const token_decoded = jwt(res.token);
+                        if (token_decoded.tipoUsuarioReact == 'Medico') {
+                            this.props.navigation.navigate('ListaMedicos')
+                        } else if (token_decoded.tipoUsuarioReact == 'Paciente') {
+                            this.props.navigation.navigate('ListaPacientes');
+                        } else if (token_decoded.tipoUsuarioReact == 'Administrador') {
+                            this.props.navigation.navigate('ListaAdm');
+                        } else {
+                            Alert.alert('Email ou senha inválidos');
+                        }
+                    });
                 });
-            });
-            
-        })
-        .catch(error => console.warn('Erro', error))
+
+            })
+            .catch(error => console.warn('Erro', error))
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <ImageBackground
                 source={require('../assets/images/matinho.jpg')}
-                style={{ width: '100%', height: '100%' }}
+                style={StyleSheet.absoluteFillObject}
             >
+
+                <View style={styles.overlay} />
+
                 <View style={styles.body}>
                     <View style={styles.container}>
 
                         <View style={styles.mainTitles}>
-                            <Image source={Logo} style={styles.mainLogo}/>
+                            <Image source={Logo} style={styles.mainLogo} />
                         </View>
 
                         <View style={styles.loginBox}>
@@ -106,7 +119,7 @@ class Login extends Component {
 
                                 <TouchableOpacity
                                     style={styles.btnRegister}
-                                    onPress={onPress=() => this.props.navigation.navigate('Cadastro')}
+                                    onPress={onPress = () => this.props.navigation.navigate('Cadastro')}
                                 >
                                     <Icon name="add-box" size={20} color='#000' />
                                     <Text style={styles.btnLoginText}>Register</Text>
@@ -121,6 +134,11 @@ class Login extends Component {
 }
 
 const styles = StyleSheet.create({
+    overlay: {
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: "rgba(255,255,255, 0.2)"
+    },
+
     body: {
         height: '100%'
     },

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, FlatList, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import auth from 'services/auth';
 import axios from 'axios';
 
-class ListaMedicos extends Component {
+class ListaAdm extends Component {
     static navigationOptions = {
         header: null
     };
@@ -54,14 +54,14 @@ class ListaMedicos extends Component {
                     ></Icon>
                 </View>
 
-                <ScrollView style={styles.main}>
+                <View style={styles.main}>
                     <FlatList
                         contentContainerStyle={styles.mainBodyConteudo}
                         data={this.state.lista}
                         keyExtractor={item => item.id}
                         renderItem={this.renderizaItem}
                     ></FlatList>
-                </ScrollView>
+                </View>
             </View>
         );
     }
@@ -150,4 +150,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ListaMedicos;
+export default ListaAdm;

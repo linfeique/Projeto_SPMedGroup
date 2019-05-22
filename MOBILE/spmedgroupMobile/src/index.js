@@ -8,41 +8,8 @@ import {
 import Login from './pages/login';
 import ListaMedicos from './pages/listaMedicos';
 import ListaPacientes from './pages/listaPacientes';
+import ListaAdm from './pages/listaAdm';
 
-const Stack = createStackNavigator({ Login })
+const Stack = createStackNavigator({ Login, ListaMedicos, ListaPacientes, ListaAdm })
 
-const MainNavigator = createBottomTabNavigator(
-    {
-        ListaMedicos,
-        ListaPacientes
-    },
-
-    {
-        initialRouteName: "ListaMedicos",
-        swipeEnabled: true,
-        tabBarOptions: {
-            showLabel: true,
-            showIcon: false,
-            inactiveBackgroundColor: "#dd99ff",
-            activeBackgroundColor: "#B727FF",
-            activeTintColor: "#FFFFFF",
-            inactiveTintColor: "#FFFFFF",
-            style: {
-                height: 50
-            }
-        }
-    }
-);
-
-export default createAppContainer(
-    createSwitchNavigator(
-        {
-            Stack,
-            MainNavigator
-        },
-
-        {
-            initialRouteName: "MainNavigator"
-        }
-    )
-);
+export default createAppContainer(Stack);

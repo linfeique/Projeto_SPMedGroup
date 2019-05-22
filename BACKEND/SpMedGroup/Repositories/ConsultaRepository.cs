@@ -111,7 +111,7 @@ namespace SPMedGroup.Repositories
                 //return ctx.Consultas.Where(x => x.IdPacienteNavigation.IdUsuario == id).ToList();
                 //return ctx.Consultas.Include(x => x.IdSituacaoNavigation).Include(x => x.IdMedicoNavigation.Consultas).Where(x => x.IdPacienteNavigation.Id == id).ToList();
 
-                Pacientes prontuario = ctx.Pacientes.Where(x => x.Id == id).FirstOrDefault();
+                Pacientes prontuario = ctx.Pacientes.Where(x => x.IdUsuario == id).FirstOrDefault();
                 List<Consultas> listaConsulta = ctx.Consultas
                     .Include(x => x.IdPacienteNavigation)
                     .Include(x => x.IdMedicoNavigation)
