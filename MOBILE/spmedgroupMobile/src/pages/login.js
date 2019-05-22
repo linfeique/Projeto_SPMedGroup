@@ -12,7 +12,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import Logo from '../assets/images/icon-login.png';
 import axios from 'axios';
 import auth from "services/auth";
-import {verify} from "services/verificaLogado"
 
 class Login extends Component {
     static navigationOptions = {
@@ -35,7 +34,7 @@ class Login extends Component {
             senha: this.state.senha
         }
 
-        await axios.post('http://192.168.3.93:5000/api/login', login, {
+        await axios.post('http://192.168.1.103:5000/api/login', login, {
             headers: {
                 'Content-Type': 'application/json'
             }

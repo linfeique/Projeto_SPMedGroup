@@ -20,7 +20,7 @@ class ListaMedicos extends Component {
     buscarConsultas = async () => {
         await auth.getItem().then((res) => {
             let token = res.token;
-            axios.get("http://192.168.3.93:5000/api/consultas", {
+            axios.get("http://192.168.1.103:5000/api/consultas", {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + token

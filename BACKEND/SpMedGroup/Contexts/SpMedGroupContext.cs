@@ -28,7 +28,7 @@ namespace SpMedGroup.Domains
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=.\\SqlExpress;Initial Catalog=SENAI_SPMEDGROUP_TARDE;Persist Security Info=True;User ID=sa;Password=132");
+                optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS;Initial Catalog=SENAI_SPMEDGROUP_TARDE;Integrated Security=True");
             }
         }
 
