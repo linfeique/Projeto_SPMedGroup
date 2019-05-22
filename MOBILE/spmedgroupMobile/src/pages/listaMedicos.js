@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import auth from 'services/auth';
 import axios from 'axios';
+import jwt from 'jwt-decode';
 
 class ListaMedicos extends Component {
     static navigationOptions = {
@@ -39,6 +40,12 @@ class ListaMedicos extends Component {
         return(
             <View style={styles.container}>
                 <View style={styles.header}>
+                    {
+                        auth.getItem().then((res) => {
+                            let token = res.token;
+                            let token_decoded = jwt(token);
+                        })
+                    }
                     <Text style={styles.nameHeader}>Bruno Salles</Text>
                     <Icon size={30} name="md-exit" style={styles.iconHeader}
                         onPress={() => {
