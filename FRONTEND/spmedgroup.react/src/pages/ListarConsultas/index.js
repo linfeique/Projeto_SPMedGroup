@@ -2,14 +2,9 @@ import React, { Component } from 'react';
 import './index.css';
 import jwt_decode from 'jwt-decode';
 import BarraPerfil from '../../Components/BarraPerfil/BarraPerfil';
-<<<<<<< HEAD
 import MenuAdmin from '../../Components/MenuAdmin/Menu';
 import MenuComum from '../../Components/MenuComum/Menu';
-=======
-import Menu from '../../Components/Menu/Menu';
-import MenuComum from '../../Components/Menu/MenuComum';
 import ModalEspec from '../../Components/ModalEspecificacoes/index';
->>>>>>> d1d30ea32a9328b3ae494c5d66a73c7afb8a0b08
 
 class ListarConsultas extends Component {
 
@@ -25,7 +20,7 @@ class ListarConsultas extends Component {
 
         let token = localStorage.getItem('usuario-spmed');
 
-        fetch('http://localhost:5000/api/consultas', {
+        fetch('http://192.168.3.93:5000/api/consultas', {
             headers: {
                 'Authorization': 'Bearer ' + token
             }   
@@ -53,7 +48,6 @@ class ListarConsultas extends Component {
         return (
             <div className="body">
                 {
-<<<<<<< HEAD
                     (
                         "http://schemas.microsoft.com/ws/2008/06/identity/claims/role" 
                         == 
@@ -63,9 +57,6 @@ class ListarConsultas extends Component {
                         ==
                         'Paciente'
                         ) ? <MenuComum /> : <MenuAdmin />
-=======
-                    (token_decoded.tipoUsuarioReact == "Administrador") ? <Menu /> : <MenuComum />
->>>>>>> d1d30ea32a9328b3ae494c5d66a73c7afb8a0b08
                 }
                 <div className="lado_direito">
                     <BarraPerfil />

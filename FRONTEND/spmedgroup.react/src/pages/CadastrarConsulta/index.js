@@ -6,7 +6,6 @@ import MenuAdmin from '../../Components/MenuAdmin/Menu';
 import MenuComum from '../../Components/MenuComum/Menu';
 import BarraPerfil from '../../Components/BarraPerfil/BarraPerfil';
 import jwt_decode from 'jwt-decode';
-import MenuComum from '../../Components/Menu/MenuComum';
 
 class CadastroConsulta extends Component{
 
@@ -107,19 +106,15 @@ class CadastroConsulta extends Component{
         .catch(erro => console.log('Erro: ', erro))
     }
 
+    
+
     render(){
         let token_undecoded = localStorage.getItem('usuario-spmed');
         let token_decoded = jwt_decode(token_undecoded);
         return(
             <div className="body">
-<<<<<<< HEAD
                 {
                     (10 > 5) ? <MenuAdmin /> : <MenuComum />
-=======
-                <Menu />
-                {   
-                    (token_decoded.tipoUsuarioReact == 'Administrador') ? <Menu /> : <MenuComum />
->>>>>>> d1d30ea32a9328b3ae494c5d66a73c7afb8a0b08
                 }
                 <div className="register_lado_direito">
                     <BarraPerfil />

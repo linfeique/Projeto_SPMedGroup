@@ -25,7 +25,7 @@ class App extends Component {
   logar(event){
     event.preventDefault();
 
-    axios.post('http://localhost:5000/api/login', {
+    axios.post('http://192.168.3.93:5000/api/login', {
       email: this.state.email,
       senha: this.state.senha
     })
