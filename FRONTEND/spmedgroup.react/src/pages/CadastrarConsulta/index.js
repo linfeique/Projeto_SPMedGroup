@@ -19,8 +19,44 @@ class CadastroConsulta extends Component{
             listaPacientes: [],
             data: '',
             hora: '',
-            dataConsulta: ''
+            dataConsulta: '',
+            endereco: '',
+            latitude: '',
+            longitude: ''
         }
+    }
+
+    buscarPacientesPorId(){
+
+        let pront = {
+            id: 10
+        };
+
+        fetch('http://192.168.3.93:5000/api/pacientes/buscarporid', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('usuario-spmed'),
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(pront)
+        })
+        .then(res => res.json())
+        .then(data => {
+            this.setState({endereco : data.endereco});
+            this.buscarLatLon();
+        })
+        .catch(erro => console.log('Erro: ', erro))
+    }
+
+    buscarLatLon(){
+        let endereco2 = this.state.endereco;
+        let enderecoCorreto = endereco2.replace(/ /g, '+');
+        fetch('https://maps.googleapis.com/maps/api/geocode/json?address='+ enderecoCorreto +'&key=AIzaSyAMJX3iTSJgfsI7fBwaeF0LsC2PdiAZID0')
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+        })
+        .catch(erro => console.log('Erro: ', erro))
     }
 
     logout(){
@@ -29,7 +65,7 @@ class CadastroConsulta extends Component{
     }
 
     buscarMedicos(){
-        fetch('http://localhost:5000/api/medicos', {
+        fetch('http://192.168.3.93:5000/api/medicos', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-spmed'),
                 'Content-Type': 'application/json'
@@ -41,7 +77,7 @@ class CadastroConsulta extends Component{
     }
 
     buscarPacientes(){
-        fetch('http://localhost:5000/api/pacientes', {
+        fetch('http://192.168.3.93:5000/api/pacientes', {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-spmed')
@@ -55,6 +91,7 @@ class CadastroConsulta extends Component{
     componentDidMount(){
         this.buscarPacientes();
         this.buscarMedicos();
+        this.buscarPacientesPorId();
     }
 
     atualizaEstadoMedico(event){
@@ -87,7 +124,7 @@ class CadastroConsulta extends Component{
             dataConsulta: this.state.dataConsulta
         }
 
-        fetch('http://localhost:5000/api/consultas', {
+        fetch('http://192.168.3.93:5000/api/consultas', {
             method: 'POST',
             body: JSON.stringify(consulta),
             headers: {
@@ -105,8 +142,6 @@ class CadastroConsulta extends Component{
         .then(data => console.log(data))
         .catch(erro => console.log('Erro: ', erro))
     }
-
-    
 
     render(){
         let token_undecoded = localStorage.getItem('usuario-spmed');

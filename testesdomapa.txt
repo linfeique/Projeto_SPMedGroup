@@ -1,0 +1,68 @@
+{
+   "results" : [
+      {
+         "address_components" : [
+            {
+               "long_name" : "602",
+               "short_name" : "602",
+               "types" : [ "street_number" ]
+            },
+            {
+               "long_name" : "Rua Manuel de Mattos Godinho",
+               "short_name" : "Rua Manuel de Mattos Godinho",
+               "types" : [ "route" ]
+            },
+            {
+               "long_name" : "Jardim Matarazzo",
+               "short_name" : "Jardim Matarazzo",
+               "types" : [ "political", "sublocality", "sublocality_level_1" ]
+            },
+            {
+               "long_name" : "São Paulo",
+               "short_name" : "São Paulo",
+               "types" : [ "administrative_area_level_2", "political" ]
+            },
+            {
+               "long_name" : "São Paulo",
+               "short_name" : "SP",
+               "types" : [ "administrative_area_level_1", "political" ]
+            },
+            {
+               "long_name" : "Brasil",
+               "short_name" : "BR",
+               "types" : [ "country", "political" ]
+            },
+            {
+               "long_name" : "03814-020",
+               "short_name" : "03814-020",
+               "types" : [ "postal_code" ]
+            }
+         ],
+         "formatted_address" : "Rua Manuel de Mattos Godinho, 602 - Jardim Matarazzo, São Paulo - SP, 03814-020, Brasil",
+         "geometry" : {
+            "location" : {
+               "lat" : -23.4906784,
+               "lng" : -46.4860671
+            },
+            "location_type" : "ROOFTOP",
+            "viewport" : {
+               "northeast" : {
+                  "lat" : -23.4893294197085,
+                  "lng" : -46.4847181197085
+               },
+               "southwest" : {
+                  "lat" : -23.4920273802915,
+                  "lng" : -46.4874160802915
+               }
+            }
+         },
+         "place_id" : "ChIJOw9Y6lBgzpQR8rcRUL8UHH0",
+         "plus_code" : {
+            "compound_code" : "GG57+PH São Paulo, SP, Brasil",
+            "global_code" : "588MGG57+PH"
+         },
+         "types" : [ "street_address" ]
+      }
+   ],
+   "status" : "OK"
+}
