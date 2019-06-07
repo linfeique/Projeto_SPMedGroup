@@ -12,7 +12,8 @@ class ListarConsultas extends Component {
         super();
 
         this.state = {
-            lista: []
+            lista: [],
+            show: false
         }
     }
 
@@ -34,8 +35,11 @@ class ListarConsultas extends Component {
         this.buscarConsultas()
     }
 
-    openButton(){
-        return(<ModalEspec />);
+    showModal = () => {
+        this.setState({
+            ...this.state,
+            show: !this.state.show
+        });
     }
 
     render() {
@@ -58,6 +62,12 @@ class ListarConsultas extends Component {
                         'Paciente'
                         ) ? <MenuComum /> : <MenuAdmin />
                 }
+                <ModalEspec 
+                    show={this.state.show}
+                    onClose={this.showModal}
+                >
+
+                </ModalEspec>
                 <div className="lado_direito">
                     <BarraPerfil />
                     <div className="container__card">
@@ -78,8 +88,8 @@ class ListarConsultas extends Component {
                                                 <span>{element.dataConsulta}</span>
                                             </div>
                                             <div>
-                                                <button className="btn__list">Atualizar Descrição</button>
-                                                <button className="btn__list" onClick={this.openButton.bind(this)}>Saiba Mais</button>
+                                                <button className="btn__list" onClick={this.showModal.bind(this)}>Atualizar Observações</button>
+                                                <button className="btn__list">Saiba Mais</button>
                                             </div>
                                         </footer>
                                     </div>
