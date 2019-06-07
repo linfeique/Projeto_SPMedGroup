@@ -72,5 +72,26 @@ namespace SpMedGroup.Controllers
                 return BadRequest();
             }
         }
+
+        [Authorize]
+        [HttpPost("buscarporid")]
+        public IActionResult BuscarPorId(Pacientes paciente)
+        {
+            try
+            {
+                Pacientes pacienteProcurado = pacienteRepositorio.BuscarPorId(paciente.Id);
+
+                if (pacienteProcurado == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(pacienteProcurado);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

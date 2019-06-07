@@ -13,5 +13,7 @@ namespace SpMedGroup.Interfaces
         List<Pacientes> Listar();
 
         Pacientes BuscarPorRG(string rg);
+
+        Pacientes BuscarPorId(int id);
     }
 }

@@ -12,15 +12,6 @@ namespace SPMedGroup.Repositories
 {
     public class ConsultaRepository : IConsultaRepository
     {
-        private readonly IMongoCollection<ConsultasMongo> _consultas;
-
-        public ConsultaRepository()
-        {
-            var client = new MongoClient("mongodb://localhost:27017");
-            var database = client.GetDatabase("spmedgrouptarde");
-            _consultas = database.GetCollection<ConsultasMongo>("consultas");
-        }
-
         public void Alterar(Consultas consulta)
         {
             using (SpMedGroupContext ctx = new SpMedGroupContext())
@@ -52,15 +43,6 @@ namespace SPMedGroup.Repositories
                 ctx.Consultas.Add(consulta);
                 ctx.SaveChanges();
             }
-
-            //ConsultasMongo consultas = new ConsultasMongo();
-            //consultas.DataCriacao = DateTime.Now;
-            //consultas.Doenca = consulta.
-
-            //public void Cadastrar(ConsultasMongo )
-            //{
-            //    _localizacoes.InsertOne(localizacao);
-            //}
         }
 
         public void Deletar(Consultas consulta)

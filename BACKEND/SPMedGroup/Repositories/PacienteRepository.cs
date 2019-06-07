@@ -40,5 +40,20 @@ namespace SpMedGroup.Repositories
                 return paciente;
             }
         }
+
+        public Pacientes BuscarPorId(int id)
+        {
+            using (SpMedGroupContext ctx = new SpMedGroupContext())
+            {
+                Pacientes pacienteProcurado = ctx.Pacientes.Find(id);
+
+                if (pacienteProcurado == null)
+                {
+                    return null;
+                }
+
+                return pacienteProcurado;
+            }
+        }
     }
 }
