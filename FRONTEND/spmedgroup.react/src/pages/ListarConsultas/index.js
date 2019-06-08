@@ -21,7 +21,7 @@ class ListarConsultas extends Component {
 
         let token = localStorage.getItem('usuario-spmed');
 
-        fetch('http://192.168.3.93:5000/api/consultas', {
+        fetch('http://192.168.1.103:5000/api/consultas', {
             headers: {
                 'Authorization': 'Bearer ' + token
             }   
