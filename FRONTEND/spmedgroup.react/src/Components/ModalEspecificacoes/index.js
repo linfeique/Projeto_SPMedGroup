@@ -156,12 +156,13 @@ export default class ModalEspecificacoes extends Component {
             idade: null,
             doenca: '',
             longitude: '',
-            latitude: ''
+            latitude: '',
+            idconsulta: this.props.consulta
         }
     }
 
     buscarEspecialidade(){
-        fetch('http://192.168.1.103:5000/api/especialidades', {
+        fetch('http://192.168.3.93:5000/api/especialidades', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-spmed'),
                 'Content-Type': 'application/json'
@@ -190,10 +191,13 @@ export default class ModalEspecificacoes extends Component {
             idade: this.state.idade,
             genero: this.state.genero,
             dataCriacao: Date.now(),
-            especialidade: this.state.especialidade
+            especialidade: this.state.especialidade,
+            idconsulta: this.props.consulta
         }
 
-        fetch('http://192.168.1.103:5000/api/consultasmongo', {
+        console.log(consulta)
+
+        fetch('http://192.168.3.93:5000/api/consultasmongo', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

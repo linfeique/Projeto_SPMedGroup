@@ -13,7 +13,8 @@ class ListarConsultas extends Component {
 
         this.state = {
             lista: [],
-            show: false
+            show: false,
+            consulta: 0
         }
     }
 
@@ -21,10 +22,10 @@ class ListarConsultas extends Component {
 
         let token = localStorage.getItem('usuario-spmed');
 
-        fetch('http://192.168.1.103:5000/api/consultas', {
+        fetch('http://192.168.3.93:5000/api/consultas', {
             headers: {
                 'Authorization': 'Bearer ' + token
-            }   
+            }
         })
             .then(resposta => resposta.json())
             .then(data => this.setState({ lista: data }))
@@ -35,11 +36,14 @@ class ListarConsultas extends Component {
         this.buscarConsultas()
     }
 
-    showModal = () => {
+    showModal = (e) => {
         this.setState({
             ...this.state,
             show: !this.state.show
         });
+        this.setState({
+            consulta: e.target.id
+        })
     }
 
     render() {
@@ -53,18 +57,19 @@ class ListarConsultas extends Component {
             <div className="body">
                 {
                     (
-                        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role" 
-                        == 
-                        'Médico' 
-                        || 
+                        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+                        ==
+                        'Médico'
+                        ||
                         "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
                         ==
                         'Paciente'
-                        ) ? <MenuComum /> : <MenuAdmin />
+                    ) ? <MenuComum /> : <MenuAdmin />
                 }
-                <ModalEspec 
+                <ModalEspec
                     show={this.state.show}
                     onClose={this.showModal}
+                    consulta={this.state.consulta}
                 >
 
                 </ModalEspec>
@@ -75,10 +80,10 @@ class ListarConsultas extends Component {
                             this.state.lista.map((element) => {
                                 return (
                                     <div className="card" key={element.id}>
-                                        
+
                                         <header className="header__two">
-                                            <p>Médico: { element.idMedicoNavigation != null ? element.idMedicoNavigation.nome : ""}</p>
-                                            <a href="#">Situação atual: Agendada | Mudar Situação</a>
+                                            <p>Médico: {element.idMedicoNavigation != null ? element.idMedicoNavigation.nome : ""}</p>
+                                            <a href="#">Situação atual: {element.idSituacaoNavigation.situacao1} | Mudar Situação</a>
                                         </header>
                                         <main className="main__two">
                                             <p>{element.descricao}</p>
@@ -88,7 +93,11 @@ class ListarConsultas extends Component {
                                                 <span>{element.dataConsulta}</span>
                                             </div>
                                             <div>
-                                                <button className="btn__list" onClick={this.showModal.bind(this)}>Atualizar Observações</button>
+                                                <button
+                                                    className="btn__list"
+                                                    onClick={this.showModal.bind(this)}
+                                                    id={element.id}
+                                                >Atualizar Observações</button>
                                                 <button className="btn__list">Saiba Mais</button>
                                             </div>
                                         </footer>

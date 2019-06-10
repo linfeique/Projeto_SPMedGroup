@@ -36,5 +36,9 @@ namespace SpMedGroup.Domains
         [BsonElement("especialidade")]
         [BsonRequired]
         public string Especialidade { get; set; }
+
+        [BsonElement("idconsulta")]
+        [BsonRequired]
+        public string IdConsulta { get; set; }
     }
 }
