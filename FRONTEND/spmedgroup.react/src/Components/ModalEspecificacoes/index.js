@@ -152,7 +152,7 @@ export default class ModalEspecificacoes extends Component {
             listaEspecialidade: [],
             especialidade: null,
             genero: '',
-            dataConsulta: '',
+            dataCriacao: '',
             idade: null,
             doenca: '',
             longitude: '',
@@ -183,7 +183,26 @@ export default class ModalEspecificacoes extends Component {
     atualizarConsulta(event){
         event.preventDefault();
 
-        
+        let consulta = {
+            doenca: this.state.doenca,
+            latitude: this.state.latitude,
+            longitude: this.state.longitude,
+            idade: this.state.idade,
+            genero: this.state.genero,
+            dataCriacao: Date.now(),
+            especialidade: this.state.especialidade
+        }
+
+        fetch('http://192.168.1.103:5000/api/consultasmongo', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(consulta)
+        })
+        .then(res => console.log(res))
+        .then(data => console.log(data))
+        .catch(erro => console.log("Erro: ", erro))
     }
 
     render(){
@@ -200,7 +219,7 @@ export default class ModalEspecificacoes extends Component {
                         <div style={input__header}>
                             <div style={input__header__one}>
                                 <label htmlFor="espec" style={label}>Especialidade do Médico</label>
-                                <select style={select__header__espec} id="espec" value={this.state.especialidade} onChange={this.atualizaEstado.bind(this)}>
+                                <select style={select__header__espec} id="espec" name="especialidade" value={this.state.especialidade} onChange={this.atualizaEstado.bind(this)}>
                                     {
                                         this.state.listaEspecialidade.map((e) => {
                                             return(
@@ -212,7 +231,7 @@ export default class ModalEspecificacoes extends Component {
                             </div>
                             <div style={input__header__one}>
                                 <label htmlFor="genero" style={label}>Selecione o Gênero</label>
-                                <select style={select__header__genero} id="genero" value={this.state.genero} onChange={this.atualizaEstado.bind(this)}>
+                                <select style={select__header__genero} id="genero" name="genero" value={this.state.genero} onChange={this.atualizaEstado.bind(this)}>
                                     <option value="Masculino">Masculino</option>
                                     <option value="Feminino">Feminino</option>
                                     <option value="Indefinido">Indefinido</option>
@@ -225,7 +244,8 @@ export default class ModalEspecificacoes extends Component {
                                 <label htmlFor="dataConsulta" style={label}>Data da Consulta</label>
                                 <input 
                                     type="date" 
-                                    id="dataConsulta" 
+                                    id="dataConsulta"
+                                    name="dataConsulta"
                                     value={this.state.dataConsulta} 
                                     onChange={this.atualizaEstado.bind(this)} 
                                     style={input__middle__data}
@@ -235,7 +255,8 @@ export default class ModalEspecificacoes extends Component {
                                 <label htmlFor="idade" style={label}>Idade do Paciente</label>
                                 <input 
                                     type="text" 
-                                    id="idade" 
+                                    id="idade"
+                                    name="idade" 
                                     value={this.state.idade} 
                                     onChange={this.atualizaEstado.bind(this)} 
                                     style={input__middle__idade} 
@@ -247,6 +268,7 @@ export default class ModalEspecificacoes extends Component {
                                 <input 
                                     type="text" 
                                     id="doenca" 
+                                    name="doenca"
                                     value={this.state.doenca} 
                                     onChange={this.atualizaEstado.bind(this)} 
                                     style={input__middle__idade} 
@@ -260,7 +282,8 @@ export default class ModalEspecificacoes extends Component {
                                 <label htmlFor="longitude" style={label}>Longitude do Paciente</label>
                                 <input 
                                     type="text" 
-                                    id="longitude" 
+                                    id="longitude"
+                                    name="longitude"
                                     value={this.state.longitude} 
                                     onChange={this.atualizaEstado.bind(this)} 
                                     style={input__end__local}
@@ -272,7 +295,8 @@ export default class ModalEspecificacoes extends Component {
                                 <label htmlFor="latitude" style={label}>Latitude do Paciente</label>
                                 <input 
                                     type="text" 
-                                    id="latitude" 
+                                    id="latitude"
+                                    name="latitude"
                                     value={this.state.latitude} 
                                     onChange={this.atualizaEstado.bind(this)}
                                     style={input__end__local}
