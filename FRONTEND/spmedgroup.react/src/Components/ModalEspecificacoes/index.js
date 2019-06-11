@@ -157,12 +157,12 @@ export default class ModalEspecificacoes extends Component {
             doenca: '',
             longitude: '',
             latitude: '',
-            idconsulta: this.props.consulta
+            consultaAll: {}
         }
     }
 
     buscarEspecialidade(){
-        fetch('http://192.168.3.196:5000/api/especialidades', {
+        fetch('http://192.168.3.93:5000/api/especialidades', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-spmed'),
                 'Content-Type': 'application/json'
@@ -197,7 +197,7 @@ export default class ModalEspecificacoes extends Component {
             idconsulta: this.props.consulta
         }
 
-        fetch('http://192.168.3.196:5000/api/consultasmongo', {
+        fetch('http://192.168.3.93:5000/api/consultasmongo', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -209,15 +209,43 @@ export default class ModalEspecificacoes extends Component {
         .catch(erro => console.log("Erro: ", erro))
     }
 
-    buscarLatLong(){
+    buscarIdConsulta(){
 
+        let teste = {
+            id: this.props.consulta
+        };
+
+        fetch('http://192.168.3.93:5000/api/consultas/buscarporid', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('usuario-spmed')
+            },
+            body: JSON.stringify(teste)
+        })
+        .then(res => { return res.json() })
+        .then(data => this.setState({ consultaAll: data }))
+        .catch(erro => console.log("Erro: ", erro))
+
+        this.buscarLatLong();
+    }
+    
+    buscarLatLong(){
+        let um = this.state.consultaAll;
+        let dois = um.idPacienteNavigation;
+        // let teste2 = teste.idPacienteNavigation.endereco;
+        console.log(um)
+        // let endereco = dois.endereco;
+        // console.log(endereco)
         // fetch('https://maps.googleapis.com/maps/api/geocode/json?address=&key=AIzaSyAMJX3iTSJgfsI7fBwaeF0LsC2PdiAZID0')
+
     }
 
     render(){
         if(!this.props.show){
             return null;
         }
+        this.buscarIdConsulta()
         return(
             <div style={backdropStyle}>
                 <div style={modalStyle}>
@@ -328,7 +356,8 @@ export default class ModalEspecificacoes extends Component {
                                     idade: undefined,
                                     genero: '',
                                     dataCriacao: '',
-                                    especialidade: ''
+                                    especialidade: '',
+                                    consultaAll: {}
                                 })
                             }} 
                             style={footerStyle__btn__two}

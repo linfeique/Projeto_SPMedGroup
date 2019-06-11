@@ -32,7 +32,7 @@ class CadastroConsulta extends Component{
             id: 10
         };
 
-        fetch('http://192.168.3.196:5000/api/pacientes/buscarporid', {
+        fetch('http://192.168.3.93:5000/api/pacientes/buscarporid', {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-spmed'),
@@ -65,7 +65,7 @@ class CadastroConsulta extends Component{
     }
 
     buscarMedicos(){
-        fetch('http://192.168.3.196:5000/api/medicos', {
+        fetch('http://192.168.3.93:5000/api/medicos', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-spmed'),
                 'Content-Type': 'application/json'
@@ -77,7 +77,7 @@ class CadastroConsulta extends Component{
     }
 
     buscarPacientes(){
-        fetch('http://192.168.3.196:5000/api/pacientes', {
+        fetch('http://192.168.3.93:5000/api/pacientes', {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-spmed')
@@ -124,7 +124,7 @@ class CadastroConsulta extends Component{
             dataConsulta: this.state.dataConsulta
         }
 
-        fetch('http://192.168.3.196:5000:5000/api/consultas', {
+        fetch('http://192.168.3.93:5000:5000/api/consultas', {
             method: 'POST',
             body: JSON.stringify(consulta),
             headers: {
