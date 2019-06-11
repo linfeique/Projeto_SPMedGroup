@@ -162,7 +162,7 @@ export default class ModalEspecificacoes extends Component {
     }
 
     buscarEspecialidade(){
-        fetch('http://192.168.1.103:5000/api/especialidades', {
+        fetch('http://192.168.3.196:5000/api/especialidades', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-spmed'),
                 'Content-Type': 'application/json'
@@ -197,7 +197,7 @@ export default class ModalEspecificacoes extends Component {
             idconsulta: this.props.consulta
         }
 
-        fetch('http://192.168.1.103:5000/api/consultasmongo', {
+        fetch('http://192.168.3.196:5000/api/consultasmongo', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -212,7 +212,6 @@ export default class ModalEspecificacoes extends Component {
     buscarLatLong(){
 
         // fetch('https://maps.googleapis.com/maps/api/geocode/json?address=&key=AIzaSyAMJX3iTSJgfsI7fBwaeF0LsC2PdiAZID0')
-        
     }
 
     render(){
