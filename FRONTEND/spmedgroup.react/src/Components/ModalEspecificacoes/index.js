@@ -150,10 +150,10 @@ export default class ModalEspecificacoes extends Component {
 
         this.state = {
             listaEspecialidade: [],
-            especialidade: null,
+            especialidade: undefined,
             genero: '',
             dataCriacao: '',
-            idade: null,
+            idade: undefined,
             doenca: '',
             longitude: '',
             latitude: '',
@@ -162,7 +162,7 @@ export default class ModalEspecificacoes extends Component {
     }
 
     buscarEspecialidade(){
-        fetch('http://192.168.3.93:5000/api/especialidades', {
+        fetch('http://192.168.1.103:5000/api/especialidades', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-spmed'),
                 'Content-Type': 'application/json'
@@ -184,20 +184,20 @@ export default class ModalEspecificacoes extends Component {
     atualizarConsulta(event){
         event.preventDefault();
 
+        let date = new Date().getTime();
+
         let consulta = {
             doenca: this.state.doenca,
             latitude: this.state.latitude,
             longitude: this.state.longitude,
             idade: this.state.idade,
             genero: this.state.genero,
-            dataCriacao: Date.now(),
+            dataCriacao: new Date(date),
             especialidade: this.state.especialidade,
             idconsulta: this.props.consulta
         }
 
-        console.log(consulta)
-
-        fetch('http://192.168.3.93:5000/api/consultasmongo', {
+        fetch('http://192.168.1.103:5000/api/consultasmongo', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -207,6 +207,12 @@ export default class ModalEspecificacoes extends Component {
         .then(res => console.log(res))
         .then(data => console.log(data))
         .catch(erro => console.log("Erro: ", erro))
+    }
+
+    buscarLatLong(){
+
+        // fetch('https://maps.googleapis.com/maps/api/geocode/json?address=&key=AIzaSyAMJX3iTSJgfsI7fBwaeF0LsC2PdiAZID0')
+        
     }
 
     render(){
@@ -223,11 +229,11 @@ export default class ModalEspecificacoes extends Component {
                         <div style={input__header}>
                             <div style={input__header__one}>
                                 <label htmlFor="espec" style={label}>Especialidade do Médico</label>
-                                <select style={select__header__espec} id="espec" name="especialidade" value={this.state.especialidade} onChange={this.atualizaEstado.bind(this)}>
+                                <select style={select__header__espec} name="especialidade" value={this.state.especialidade} onChange={this.atualizaEstado.bind(this)}>
                                     {
                                         this.state.listaEspecialidade.map((e) => {
                                             return(
-                                                <option id={e.id} key={e.id}>{e.nome}</option>
+                                                <option value={e.id} key={e.id}>{e.nome}</option>
                                             );
                                         })
                                     }
@@ -235,7 +241,7 @@ export default class ModalEspecificacoes extends Component {
                             </div>
                             <div style={input__header__one}>
                                 <label htmlFor="genero" style={label}>Selecione o Gênero</label>
-                                <select style={select__header__genero} id="genero" name="genero" value={this.state.genero} onChange={this.atualizaEstado.bind(this)}>
+                                <select style={select__header__genero} name="genero" value={this.state.genero} defaultValue="Masculino" onChange={this.atualizaEstado.bind(this)}>
                                     <option value="Masculino">Masculino</option>
                                     <option value="Feminino">Feminino</option>
                                     <option value="Indefinido">Indefinido</option>
@@ -313,7 +319,21 @@ export default class ModalEspecificacoes extends Component {
                         <button style={footerStyle__btn__one} onClick={this.atualizarConsulta.bind(this)}>
                             Salvar Alterações
                         </button>
-                        <button onClick={(e) => { this.onClose(e) }} style={footerStyle__btn__two}>
+                        <button 
+                            onClick={(e) => { 
+                                this.onClose(e)
+                                this.setState({
+                                    doenca: '',
+                                    latitude: '',
+                                    longitude: '',
+                                    idade: undefined,
+                                    genero: '',
+                                    dataCriacao: '',
+                                    especialidade: ''
+                                })
+                            }} 
+                            style={footerStyle__btn__two}
+                        >
                             Close
                         </button>
                     </div>

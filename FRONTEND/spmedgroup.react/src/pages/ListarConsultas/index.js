@@ -22,7 +22,7 @@ class ListarConsultas extends Component {
 
         let token = localStorage.getItem('usuario-spmed');
 
-        fetch('http://192.168.3.93:5000/api/consultas', {
+        fetch('http://192.168.1.103:5000/api/consultas', {
             headers: {
                 'Authorization': 'Bearer ' + token
             }
@@ -50,8 +50,6 @@ class ListarConsultas extends Component {
 
         let token_undecoded = localStorage.getItem('usuario-spmed');
         let token_decoded = jwt_decode(token_undecoded);
-
-        console.log(token_decoded);
 
         return (
             <div className="body">

@@ -139,5 +139,26 @@ namespace SPMedGroup.Controllers
                 return BadRequest();
             }
         }
+
+        [Authorize]
+        [HttpPost("buscarporid")]
+        public IActionResult BurcarPorId(Consultas consulta)
+        {
+            try
+            {
+                Consultas consultaP = consultaRepositorio.BuscarPorId(consulta.Id);
+
+                if (consultaP == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(consultaP);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

@@ -25,14 +25,23 @@ namespace SPMedGroup.Repositories
         {
             using (SpMedGroupContext ctx = new SpMedGroupContext())
             {
-                Consultas consultaProcurada = ctx.Consultas.Find(id);
+                Consultas consulta = ctx.Consultas
+                        .Include(x => x.IdPacienteNavigation)
+                        .Include(x => x.IdMedicoNavigation)
+                        .Include(x => x.IdMedicoNavigation.IdEspecialidadeNavigation)
+                        .Include(x => x.IdSituacaoNavigation)
+                        .FirstOrDefault(x => x.Id == id);
 
-                if (consultaProcurada == null)
+                consulta.IdPacienteNavigation.Consultas = null;
+                consulta.IdMedicoNavigation.Consultas = null;
+                consulta.IdSituacaoNavigation.Consultas = null;
+
+                if (consulta == null)
                 {
                     return null;
                 }
 
-                return consultaProcurada;
+                return consulta;
             }
         }
 
