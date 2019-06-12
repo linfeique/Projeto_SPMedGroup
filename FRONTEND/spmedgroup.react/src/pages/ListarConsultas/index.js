@@ -96,7 +96,10 @@ class ListarConsultas extends Component {
                                                     onClick={this.showModal.bind(this)}
                                                     id={element.id}
                                                 >Atualizar Observações</button>
-                                                <button className="btn__list">Saiba Mais</button>
+                                                <button 
+                                                    className="btn__list"
+                                                    onClick={this.showModal2.bind(this)}
+                                                >Saiba Mais</button>
                                             </div>
                                         </footer>
                                     </div>
