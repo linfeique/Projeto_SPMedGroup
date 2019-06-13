@@ -12,7 +12,6 @@ export default class MenuAdmin extends Component {
                 </header>
                 <main>
                     <ul className="menu">
-                        <a href="#"><li>Página Inicial</li></a>
                         <a href="#"><li>Cadastrar Médicos</li></a>
                         <a href="#"><li>Cadastrar Pacientes</li></a>
                         <a href="/listarConsultas"><li>Relatório de Consultas</li></a>

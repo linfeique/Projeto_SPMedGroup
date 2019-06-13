@@ -164,7 +164,7 @@ export default class ModalEspecificacoes extends Component {
     }
 
     buscarEspecialidade() {
-        fetch('http://192.168.3.93:5000/api/especialidades', {
+        fetch('http://192.168.1.103:5000/api/especialidades', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-spmed'),
                 'Content-Type': 'application/json'
@@ -199,7 +199,7 @@ export default class ModalEspecificacoes extends Component {
             idconsulta: this.props.consulta
         }
 
-        fetch('http://192.168.3.93:5000/api/consultasmongo', {
+        fetch('http://192.168.1.103:5000/api/consultasmongo', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -220,7 +220,7 @@ export default class ModalEspecificacoes extends Component {
                 id: a
             };
 
-            fetch('http://192.168.3.93:5000/api/consultas/buscarporid', {
+            fetch('http://192.168.1.103:5000/api/consultas/buscarporid', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -257,8 +257,7 @@ export default class ModalEspecificacoes extends Component {
         })
         .catch(erro => console.log("Erro: ", erro))
 
-        let teste = this.state.lat + " " + this.state.lng 
-        console.log(teste)
+        let teste = this.state.lat + " " + this.state.lng;
     }
 
     render() {

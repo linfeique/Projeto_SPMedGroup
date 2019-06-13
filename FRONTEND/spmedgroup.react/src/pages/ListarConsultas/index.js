@@ -22,13 +22,15 @@ class ListarConsultas extends Component {
 
         let token = localStorage.getItem('usuario-spmed');
 
-        fetch('http://192.168.3.93:5000/api/consultas', {
+        fetch('http://192.168.1.103:5000/api/consultas', {
             headers: {
                 'Authorization': 'Bearer ' + token
             }
         })
             .then(resposta => resposta.json())
-            .then(data => this.setState({ lista: data }))
+            .then(data => {
+                this.setState({ lista: data })
+            })
             .catch(erro => console.log("Erro: ", erro))
     }
 
@@ -47,10 +49,6 @@ class ListarConsultas extends Component {
     }
 
     render() {
-
-        let token_undecoded = localStorage.getItem('usuario-spmed');
-        let token_decoded = jwt_decode(token_undecoded);
-
         return (
             <div className="body">
                 {
@@ -68,9 +66,7 @@ class ListarConsultas extends Component {
                     show={this.state.show}
                     onClose={this.showModal}
                     consulta={this.state.consulta}
-                >
-
-                </ModalEspec>
+                ></ModalEspec>
                 <div className="lado_direito">
                     <BarraPerfil />
                     <div className="container__card">
@@ -98,7 +94,7 @@ class ListarConsultas extends Component {
                                                 >Atualizar Observações</button>
                                                 <button 
                                                     className="btn__list"
-                                                    onClick={this.showModal2.bind(this)}
+                                                    // onClick={this.showModal2.bind(this)}
                                                 >Saiba Mais</button>
                                             </div>
                                         </footer>

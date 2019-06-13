@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import img1 from '../../assets/images/icon-login.png';
 import axios from 'axios';
+import LoginError from '../../Components/Erros/index';
 
 class App extends Component {
 
@@ -10,8 +11,16 @@ class App extends Component {
 
     this.state = {
       email: '',
-      senha: ''
+      senha: '',
+      show: false
     }
+  }
+
+  showModal = (e) => {
+    this.setState({
+        ...this.state,
+        show: !this.state.show
+    })
   }
 
   atualizaEstadoEmail(event){
@@ -25,7 +34,7 @@ class App extends Component {
   logar(event){
     event.preventDefault();
 
-    axios.post('http://192.168.3.93:5000/api/login', {
+    axios.post('http://192.168.1.103:5000/api/login', {
       email: this.state.email,
       senha: this.state.senha
     })
@@ -33,12 +42,17 @@ class App extends Component {
       localStorage.setItem("usuario-spmed", data.data.token);
       this.props.history.push('/listarConsultas');
     })
-    .catch(erro => console.log("Erro: ", erro))
+    .catch((erro) => {
+      if(erro.response.status == "404"){
+        this.showModal()
+      }
+    })
   }
 
   render() {
     return (
       <div className="App">
+        <LoginError show={this.state.show} onClose={this.showModal} erro="Usuario não existe"/>
         <div className="loginbox">
             <img src={img1} width="140px" height="150px" alt="#" className="icon-login"/>
             <form onSubmit={this.logar.bind(this)}>

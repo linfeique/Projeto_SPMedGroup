@@ -22,7 +22,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: fixed;
 }
 
 .header{
@@ -68,12 +67,12 @@
 }
 
 .lado_direito{
-    width: 100%;
+    width: 85%;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-left: 15%;
+    overflow: auto;
 }
 
 .barra_perfil{
@@ -108,10 +107,11 @@
 
 .card{
     width: 900px;
-    height: 154px;
+    min-height: 154px;
     background-color: #E9FDF4;
     border: 1.5px solid #38B478;
-    margin-top: 80px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -169,5 +169,5 @@
     justify-content: center;
     align-items: center;
     height: 94%;
-    margin-top: 20%;
+    margin-top: 32%;
 }

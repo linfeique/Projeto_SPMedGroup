@@ -22,6 +22,26 @@ namespace SPMedGroup.Controllers
             medicoRepositorio = new MedicoRepository();
         }
 
+        [HttpPost("buscarporusuario")]
+        public IActionResult BuscarPorIdUsuario(Medicos medico)
+        {
+            try
+            {
+                Medicos medicoP = medicoRepositorio.BuscarPorIdUsuario(medico.IdUsuarioNavigation.Id);
+
+                if (medicoP == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(medicoP);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
         [Authorize(Roles = "Administrador")]
         [HttpGet]
         public IActionResult Listar()

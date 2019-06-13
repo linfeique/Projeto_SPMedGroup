@@ -12,7 +12,6 @@ export default class MenuComum extends Component {
                 </header>
                 <main>
                     <ul className="menu">
-                        <a href="#"><li>Página Inicial</li></a>
                         <a href="/listarConsultas"><li>Relatório de Consultas</li></a>
                     </ul>
                 </main>

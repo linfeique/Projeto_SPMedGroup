@@ -34,12 +34,13 @@ namespace SPMedGroup.Controllers
             try
             {
                 Usuarios usuario = usuarioRepositorio.BuscarPorEmailSenha(login.Email, login.Senha);
-                Medicos medico = medicoRepositorio.BuscarMedicoPorIdUsuario(usuario.Id);
 
                 if (usuario == null)
                 {
                     return NotFound("Usuario não encontrado");
                 }
+
+                //Medicos medico = medicoRepositorio.BuscarMedicoPorIdUsuario(usuario.Id);
 
                 var claims = new[]
                 {

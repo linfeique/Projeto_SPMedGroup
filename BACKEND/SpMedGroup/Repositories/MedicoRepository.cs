@@ -56,22 +56,19 @@ namespace SPMedGroup.Repositories
             }
         }
 
-        //public List<Medicos> ListarMedicosPorEspecialidade()
-        //{
-        //    using (SpMedGroupContext ctx = new SpMedGroupContext())
-        //    {
-        //        List<Medicos> ListaMedicos = Listar();
-        //        Medicos medicos = new Medicos();
+        public Medicos BuscarPorIdUsuario(int id)
+        {
+            using (SpMedGroupContext ctx = new SpMedGroupContext())
+            {
+                Medicos medicoP = ctx.Medicos.FirstOrDefault(x => x.IdUsuario == id);
 
-        //        foreach (Medicos item in ListaMedicos)
-        //        {
-        //            medicos = BuscarMedicosPorEspecialidade(item.IdEspecialidadeNavigation.Nome);
+                if (medicoP == null)
+                {
+                    return null;
+                }
 
-        //            ListaMedicos.Add(medicos);
-        //        }
-
-        //        return ListaMedicos;
-        //    }
-        //}
+                return medicoP;
+            }
+        }
     }
 }
