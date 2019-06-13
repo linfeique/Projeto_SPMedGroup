@@ -1,0 +1,43 @@
+*{
+    text-decoration: none;
+}
+
+.js__barra__perfil{
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #38B478;
+    height: 60px;
+    position: fixed;
+}
+
+.js__barra__left{
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.js__barra__left a{
+    color: white;
+}
+
+.js__barra__right{
+    display: flex;
+    align-items: center;
+}
+
+.testezao{
+    color: white
+}
+
+.js__barra__sair{
+    margin-left: 10px;
+    margin-right: 10px;
+    color: white;
+}
+
+#testezinho{
+    color: white;
+    font-size: 40px;
+    margin-right: 10px;
+}

@@ -11,6 +11,7 @@ using SpMedGroup.Repositories;
 
 namespace SpMedGroup.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class PacientesController : ControllerBase
@@ -21,6 +22,26 @@ namespace SpMedGroup.Controllers
         public PacientesController()
         {
             pacienteRepositorio = new PacienteRepository();
+        }
+
+        [HttpPost("buscarporusuario")]
+        public IActionResult BuscarPorIdUsuario(Pacientes paciente)
+        {
+            try
+            {
+                Pacientes pacienteP = pacienteRepositorio.BuscarPorIdUsuario(paciente.IdUsuarioNavigation.Id);
+
+                if (pacienteP == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(pacienteP);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
 
         [Authorize]

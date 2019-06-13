@@ -55,5 +55,20 @@ namespace SpMedGroup.Repositories
                 return pacienteProcurado;
             }
         }
+
+        public Pacientes BuscarPorIdUsuario(int id)
+        {
+            using (SpMedGroupContext ctx = new SpMedGroupContext())
+            {
+                Pacientes pacienteP = ctx.Pacientes.FirstOrDefault(x => x.IdUsuario == id);
+
+                if(pacienteP == null)
+                {
+                    return null;
+                }
+
+                return pacienteP;
+            }
+        }
     }
 }
