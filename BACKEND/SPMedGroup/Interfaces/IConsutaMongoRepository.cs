@@ -8,5 +8,7 @@ namespace SpMedGroup.Interfaces
         void Cadastrar(ConsultasMongo consulta);
 
         List<ConsultasMongo> Listar();
+
+        ConsultasMongo BuscarPorIdConsulta(int id);
     }
 }

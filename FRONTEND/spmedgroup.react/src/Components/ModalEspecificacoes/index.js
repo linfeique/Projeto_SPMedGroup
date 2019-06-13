@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './index';
-import { GoogleApiWrapper, InfoWindow, Marker, Map } from 'google-maps-react';
 
 const backdropStyle = {
     position: 'fixed',
@@ -164,7 +163,7 @@ export default class ModalEspecificacoes extends Component {
     }
 
     buscarEspecialidade() {
-        fetch('http://192.168.1.103:5000/api/especialidades', {
+        fetch('http://192.168.3.93:5000/api/especialidades', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-spmed'),
                 'Content-Type': 'application/json'
@@ -190,8 +189,8 @@ export default class ModalEspecificacoes extends Component {
 
         let consulta = {
             doenca: this.state.doenca,
-            latitude: this.state.latitude,
-            longitude: this.state.longitude,
+            latitude: this.state.lat,
+            longitude: this.state.lng,
             idade: this.state.idade,
             genero: this.state.genero,
             dataCriacao: new Date(date),
@@ -199,16 +198,24 @@ export default class ModalEspecificacoes extends Component {
             idconsulta: this.props.consulta
         }
 
-        fetch('http://192.168.1.103:5000/api/consultasmongo', {
+        fetch('http://192.168.3.93:5000/api/consultasmongo', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(consulta)
         })
-            .then(res => console.log(res))
+            .then(res => {
+                if(res.status == 200){
+                    alert("Consulta atualizada com sucesso")
+                }
+            })
             .then(data => console.log(data))
-            .catch(erro => console.log("Erro: ", erro))
+            .catch(erro => {
+                if(erro.response.status == 400){
+                    alert("Algo está inválido")
+                }
+            })
     }
 
     buscarIdConsulta(a) {
@@ -220,7 +227,7 @@ export default class ModalEspecificacoes extends Component {
                 id: a
             };
 
-            fetch('http://192.168.1.103:5000/api/consultas/buscarporid', {
+            fetch('http://192.168.3.93:5000/api/consultas/buscarporid', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -275,7 +282,7 @@ export default class ModalEspecificacoes extends Component {
                         <div style={input__header}>
                             <div style={input__header__one}>
                                 <label htmlFor="espec" style={label}>Especialidade do Médico</label>
-                                <select style={select__header__espec} name="especialidade" value={this.state.especialidade} onChange={this.atualizaEstado.bind(this)}>
+                                <select required style={select__header__espec} name="especialidade" value={this.state.especialidade} onChange={this.atualizaEstado.bind(this)}>
                                     {
                                         this.state.listaEspecialidade.map((e) => {
                                             return (
@@ -287,7 +294,7 @@ export default class ModalEspecificacoes extends Component {
                             </div>
                             <div style={input__header__one}>
                                 <label htmlFor="genero" style={label}>Selecione o Gênero</label>
-                                <select style={select__header__genero} name="genero" value={this.state.genero} defaultValue="Masculino" onChange={this.atualizaEstado.bind(this)}>
+                                <select required style={select__header__genero} name="genero" value={this.state.genero} defaultValue="Masculino" onChange={this.atualizaEstado.bind(this)}>
                                     <option value="Masculino">Masculino</option>
                                     <option value="Feminino">Feminino</option>
                                     <option value="Indefinido">Indefinido</option>
@@ -305,6 +312,7 @@ export default class ModalEspecificacoes extends Component {
                                     value={this.state.dataConsulta}
                                     onChange={this.atualizaEstado.bind(this)}
                                     style={input__middle__data}
+                                    required
                                 />
                             </div>
                             <div style={input__middle__one}>
@@ -317,6 +325,7 @@ export default class ModalEspecificacoes extends Component {
                                     onChange={this.atualizaEstado.bind(this)}
                                     style={input__middle__idade}
                                     placeholder="Digite a idade do paciente"
+                                    required
                                 />
                             </div>
                             <div style={input__middle__one}>
@@ -329,6 +338,7 @@ export default class ModalEspecificacoes extends Component {
                                     onChange={this.atualizaEstado.bind(this)}
                                     style={input__middle__idade}
                                     placeholder="Digite a doença do paciente"
+                                    required
                                 />
                             </div>
                         </div>
@@ -344,6 +354,7 @@ export default class ModalEspecificacoes extends Component {
                                     onChange={this.atualizaEstado.bind(this)}
                                     style={input__end__local}
                                     placeholder="Digite a longitude"
+                                    required
                                 />
                             </div>
 
@@ -357,6 +368,7 @@ export default class ModalEspecificacoes extends Component {
                                     onChange={this.atualizaEstado.bind(this)}
                                     style={input__end__local}
                                     placeholder="Digite a latitude"
+                                    required
                                 />
                             </div>
                         </div>

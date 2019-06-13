@@ -40,7 +40,7 @@ export default class BarraPerfil extends Component{
             }
         }
 
-        fetch('http://192.168.1.103:5000/api/pacientes/buscarporusuario', {
+        fetch('http://192.168.3.93:5000/api/pacientes/buscarporusuario', {
             method: "POST",
             headers:{
                 "Content-Type": "application/json",
@@ -61,7 +61,7 @@ export default class BarraPerfil extends Component{
             }
         }
 
-        fetch('http://192.168.1.103:5000/api/medicos/buscarporusuario', {
+        fetch('http://192.168.3.93:5000/api/medicos/buscarporusuario', {
             method: "POST",
             headers:{
                 "Content-Type": "application/json",

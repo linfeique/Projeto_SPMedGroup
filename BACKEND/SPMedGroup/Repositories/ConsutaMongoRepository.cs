@@ -17,6 +17,18 @@ namespace SpMedGroup.Repositories
             _consultas = database.GetCollection<ConsultasMongo>("consultas");
         }
 
+        public ConsultasMongo BuscarPorIdConsulta(int id)
+        {
+            ConsultasMongo consulta = _consultas.Find(x => x.IdConsulta == id.ToString()).FirstOrDefault();
+
+            if (consulta == null)
+            {
+                return null;
+            }
+
+            return consulta;
+        }
+
         public void Cadastrar(ConsultasMongo consulta)
         {
             _consultas.InsertOne(consulta);

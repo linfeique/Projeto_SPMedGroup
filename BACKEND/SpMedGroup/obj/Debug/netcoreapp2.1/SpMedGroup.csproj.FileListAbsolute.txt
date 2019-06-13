@@ -51,3 +51,6 @@ C:\Users\44846245837\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\obj\Debug\net
 C:\Users\44846245837\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\obj\Debug\netcoreapp2.1\SpMedGroup.AssemblyInfo.cs
 C:\Users\44846245837\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\obj\Debug\netcoreapp2.1\SpMedGroup.dll
 C:\Users\44846245837\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\obj\Debug\netcoreapp2.1\SpMedGroup.pdb
+C:\Users\44846245837\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\obj\Debug\netcoreapp2.1\SpMedGroup.RazorAssemblyInfo.cache
+C:\Users\44846245837\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\obj\Debug\netcoreapp2.1\SpMedGroup.RazorAssemblyInfo.cs
+C:\Users\44846245837\Desktop\Projeto_SPMedGroup\BACKEND\SpMedGroup\obj\Debug\netcoreapp2.1\SpMedGroup.RazorTargetAssemblyInfo.cache

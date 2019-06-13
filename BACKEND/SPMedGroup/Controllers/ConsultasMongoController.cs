@@ -18,6 +18,26 @@ namespace SpMedGroup.Controllers
             consutaMongo = new ConsutaMongoRepository();
         }
 
+        [HttpPost("buscarporid")]
+        public IActionResult BuscarPorId(ConsultasMongo consulta)
+        {
+            try
+            {
+                ConsultasMongo consultaP = consutaMongo.BuscarPorIdConsulta(int.Parse(consulta.IdConsulta));
+
+                if (consultaP == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(consultaP);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpPost]
         public IActionResult Cadastrar(ConsultasMongo consulta)
         {

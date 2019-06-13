@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './index.css';
-import jwt_decode from 'jwt-decode';
 import BarraPerfil from '../../Components/BarraPerfil/BarraPerfil';
 import MenuAdmin from '../../Components/MenuAdmin/Menu';
 import MenuComum from '../../Components/MenuComum/Menu';
 import ModalEspec from '../../Components/ModalEspecificacoes/index';
+import ModalMap from '../../Components/ModalMap/index'
 
 class ListarConsultas extends Component {
 
@@ -14,7 +14,9 @@ class ListarConsultas extends Component {
         this.state = {
             lista: [],
             show: false,
-            consulta: 0
+            consulta: 0,
+            show_two: false,
+            idConsulta: 0
         }
     }
 
@@ -22,7 +24,7 @@ class ListarConsultas extends Component {
 
         let token = localStorage.getItem('usuario-spmed');
 
-        fetch('http://192.168.1.103:5000/api/consultas', {
+        fetch('http://192.168.3.93:5000/api/consultas', {
             headers: {
                 'Authorization': 'Bearer ' + token
             }
@@ -48,6 +50,17 @@ class ListarConsultas extends Component {
         })
     }
 
+    showModal_two = (e) => {
+        this.setState({
+            ...this.state,
+            show_two: !this.state.show_two
+        });
+        this.setState({
+            idConsulta: e.target.id
+        })
+    }
+
+
     render() {
         return (
             <div className="body">
@@ -67,6 +80,11 @@ class ListarConsultas extends Component {
                     onClose={this.showModal}
                     consulta={this.state.consulta}
                 ></ModalEspec>
+                <ModalMap
+                    show={this.state.show_two}
+                    onClose={this.showModal_two}
+                    idConsulta={this.state.idConsulta}
+                ></ModalMap>
                 <div className="lado_direito">
                     <BarraPerfil />
                     <div className="container__card">
@@ -94,8 +112,9 @@ class ListarConsultas extends Component {
                                                 >Atualizar Observações</button>
                                                 <button 
                                                     className="btn__list"
-                                                    // onClick={this.showModal2.bind(this)}
-                                                >Saiba Mais</button>
+                                                    onClick={this.showModal_two.bind(this)}
+                                                    id={element.id}
+                                                >Localização</button>
                                             </div>
                                         </footer>
                                     </div>
